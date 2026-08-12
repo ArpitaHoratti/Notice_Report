@@ -1,0 +1,372 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap");
+
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:#F7F2E8;
+    color:#555;
+}
+
+/* ===========================
+   MAIN LAYOUT
+=========================== */
+
+.dashboard-page{
+    min-height:100vh;
+    background:#F7F2E8;
+}
+
+.dashboard-wrapper{
+    display:flex;
+}
+
+.dashboard-main{
+    flex:1;
+    padding:40px 50px;
+    background:#F7F2E8;
+    overflow-y:auto;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+    height:80px;
+    background:#FFFDF8;
+    border-bottom:1px solid #E7DDD0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.navbar-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.navbar-logo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+}
+
+.navbar-title{
+    font-family:"Crimson Pro",serif;
+    font-size:24px;
+    color:#2B2B2B;
+    font-weight:700;
+}
+
+.navbar-subtitle{
+    font-size:11px;
+    color:#7A1F2B;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-top:4px;
+}
+
+.navbar-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.user-info{
+    text-align:right;
+}
+
+.user-info h3{
+    color:#2B2B2B;
+    font-size:15px;
+    font-weight:700;
+}
+
+.user-info span{
+    color:#7A1F2B;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.logout-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#7A1F2B;
+    color:#fff;
+    border:none;
+    padding:12px 24px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#5F1620;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar{
+    width:260px;
+    background:#FFFDF8;
+    border-right:1px solid #E7DDD0;
+    min-height:calc(100vh - 80px);
+    padding:30px 0;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:4px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 30px;
+    text-decoration:none;
+    color:#555;
+    font-size:15px;
+    font-weight:500;
+    transition:.25s;
+}
+
+.sidebar a:hover{
+    background:#F5EEE4;
+    color:#7A1F2B;
+}
+
+.sidebar .active{
+    background:#E7DDD0;
+    color:#7A1F2B;
+    border-right:4px solid #7A1F2B;
+    font-weight:700;
+}
+
+.sidebar hr{
+    border:none;
+    border-top:1px solid #E7DDD0;
+    margin:20px 30px;
+}
+
+.sidebar-footer{
+    margin-top:40px;
+    text-align:center;
+    font-size:11px;
+    color:#777;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* =========================================
+   WELCOME SECTION
+========================================= */
+
+.welcome-section{
+    margin-bottom:40px;
+}
+
+.welcome-title{
+    font-family:"Crimson Pro",serif;
+    font-size:42px;
+    font-weight:700;
+    color:#2B2B2B;
+    margin-bottom:12px;
+}
+
+.welcome-subtitle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+    color:#555;
+}
+
+.welcome-role{
+    color:#7A1F2B;
+    font-weight:700;
+}
+
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+    margin-bottom:50px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.dashboard-card{
+    background:#FFFDF8;
+    border:1px solid #E7DDD0;
+    border-radius:24px;
+    padding:28px;
+    min-height:290px;
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:0 4px 20px rgba(122,31,43,.06);
+
+    transition:.25s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(122,31,43,.12);
+}
+
+/* =========================================
+   CARD ICON
+========================================= */
+
+.card-icon{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:24px;
+}
+
+/* =========================================
+   CARD TITLE
+========================================= */
+
+.card-title{
+    font-family:"Crimson Pro",serif;
+    font-size:28px;
+    color:#2B2B2B;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+/* =========================================
+   CARD DESCRIPTION
+========================================= */
+
+.card-description{
+    font-size:15px;
+    line-height:1.7;
+    color:#666;
+    flex:1;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.card-button{
+    margin-top:25px;
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#7A1F2B;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.25s;
+}
+
+.card-button:hover{
+    background:#5F1620;
+}
+
+/* =========================================
+   COUNT CARDS
+========================================= */
+
+.card-count-section{
+    margin-top:auto;
+}
+
+.card-count{
+    font-size:58px;
+    font-weight:700;
+    color:#2B2B2B;
+    line-height:1;
+}
+
+.card-small-text{
+    margin-top:10px;
+    font-size:13px;
+    color:#666;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1300px){
+
+.dashboard-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:850px){
+
+.dashboard-grid{
+grid-template-columns:1fr;
+}
+
+}
