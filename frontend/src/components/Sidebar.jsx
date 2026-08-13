@@ -10,60 +10,153 @@ import {
   LogOut,
 } from "lucide-react";
 
-function Sidebar() {
+import "./Sidebar.css";
+
+function Sidebar({
+  setCurrentPage,
+}) {
+
+  const goTo = (page) => {
+    if (setCurrentPage) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <aside className="sidebar">
 
-      <nav>
+      <nav className="sidebar-nav">
 
-        <a href="#" className="sidebar-item active">
-          <LayoutDashboard size={20} />
-          <span>Dashboard</span>
-        </a>
+        {/* Dashboard */}
 
-        <a href="#" className="sidebar-item">
-          <FilePlus size={20} />
-          <span>Create Notice</span>
-        </a>
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("dashboard")}
+        >
+          <LayoutDashboard size={21} />
 
-        <a href="#" className="sidebar-item">
-          <FileText size={20} />
-          <span>Create Report</span>
-        </a>
+          <span>
+            Dashboard
+          </span>
+        </button>
 
-        <a href="#" className="sidebar-item">
-          <Archive size={20} />
-          <span>My Drafts</span>
-        </a>
 
-        <a href="#" className="sidebar-item">
-          <Clock size={20} />
-          <span>Pending Approval</span>
-        </a>
+        {/* Create Notice */}
 
-        <a href="#" className="sidebar-item">
-          <CheckCircle size={20} />
-          <span>Approved Documents</span>
-        </a>
+        <button
+          className="sidebar-item active"
+          onClick={() => goTo("notice")}
+        >
+          <FilePlus size={21} />
 
-        <a href="#" className="sidebar-item">
-          <XCircle size={20} />
-          <span>Rejected Documents</span>
-        </a>
+          <span>
+            Create Notice
+          </span>
+        </button>
+
+
+        {/* Create Report */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("report")}
+        >
+          <FileText size={21} />
+
+          <span>
+            Create Report
+          </span>
+        </button>
+
+
+        {/* My Drafts */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("drafts")}
+        >
+          <Archive size={21} />
+
+          <span>
+            My Drafts
+          </span>
+        </button>
+
+
+        {/* Pending Approval */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("pending")}
+        >
+          <Clock size={21} />
+
+          <span>
+            Pending Approval
+          </span>
+        </button>
+
+
+        {/* Approved */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("approved")}
+        >
+          <CheckCircle size={21} />
+
+          <span>
+            Approved Documents
+          </span>
+        </button>
+
+
+        {/* Rejected */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("rejected")}
+        >
+          <XCircle size={21} />
+
+          <span>
+            Rejected Documents
+          </span>
+        </button>
+
 
         <div className="sidebar-divider"></div>
 
-        <a href="#" className="sidebar-item">
-          <User size={20} />
-          <span>Profile</span>
-        </a>
 
-        <a href="#" className="sidebar-item logout">
-          <LogOut size={20} />
-          <span>Logout</span>
-        </a>
+        {/* Profile */}
+
+        <button
+          className="sidebar-item"
+          onClick={() => goTo("profile")}
+        >
+          <User size={21} />
+
+          <span>
+            Profile
+          </span>
+        </button>
+
+
+        {/* Logout */}
+
+        <button
+          className="sidebar-item logout"
+          onClick={() => goTo("logout")}
+        >
+          <LogOut size={21} />
+
+          <span>
+            Logout
+          </span>
+        </button>
 
       </nav>
+
 
       <div className="sidebar-footer">
         © 2024 KLE Society

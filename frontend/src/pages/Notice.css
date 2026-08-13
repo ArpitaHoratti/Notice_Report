@@ -1,0 +1,323 @@
+/* =====================================================
+   NOTICE CREATE PAGE
+===================================================== */
+
+.notice-page {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 450px minmax(0, 1fr);
+
+  gap: 40px;
+
+  padding: 32px;
+
+  background: #f7f3ec;
+
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   LEFT FORM
+===================================================== */
+
+.notice-form {
+  width: 100%;
+  max-width: 450px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 30px 32px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  align-self: start;
+
+  position: sticky;
+  top: 32px;
+
+  max-height: calc(100vh - 64px);
+
+  overflow-y: auto;
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-btn {
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0;
+
+  color: #7d1f2a;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-bottom: 28px;
+}
+
+.back-btn:hover {
+  color: #5e151e;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.notice-form h1 {
+  margin: 0 0 24px;
+
+  color: #7d1f2a;
+
+  font-size: 34px;
+
+  line-height: 1.15;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #292929;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8d2ca;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #333333;
+
+  font-size: 16px;
+
+  font-family: inherit;
+
+  padding: 13px 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input {
+  height: 50px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+
+/* =====================================================
+   INPUT FOCUS
+===================================================== */
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #8b2432;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 36, 50, 0.10);
+}
+
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999999;
+}
+
+
+/* =====================================================
+   RIGHT PREVIEW AREA
+===================================================== */
+
+.notice-preview {
+  min-width: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   PREVIEW TITLE
+===================================================== */
+
+.preview-heading {
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 18px;
+
+  font-weight: 500;
+
+  color: #222222;
+
+  margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   PREVIEW SCROLL AREA
+===================================================== */
+
+.preview-scroll {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
+  padding: 0 20px 60px;
+
+  overflow: visible;
+}
+
+
+/* =====================================================
+   RESPONSIVE - LAPTOP
+===================================================== */
+
+@media (max-width: 1300px) {
+
+  .notice-page {
+    grid-template-columns: 390px minmax(0, 1fr);
+
+    gap: 25px;
+
+    padding: 25px;
+  }
+
+  .notice-form {
+    max-width: 390px;
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .notice-page {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+  }
+
+  .notice-form {
+    position: static;
+
+    max-width: none;
+
+    max-height: none;
+  }
+
+  .notice-preview {
+    width: 100%;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .notice-page {
+    padding: 12px;
+
+    gap: 20px;
+  }
+
+  .notice-form {
+    padding: 22px 18px;
+
+    border-radius: 14px;
+  }
+
+  .notice-form h1 {
+    font-size: 28px;
+  }
+
+  .preview-scroll {
+    padding-left: 0;
+    padding-right: 0;
+
+    overflow-x: auto;
+
+    justify-content: flex-start;
+  }
+
+}

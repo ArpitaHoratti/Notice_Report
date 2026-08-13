@@ -1,0 +1,238 @@
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  width: 100%;
+  height: 78px;
+
+  background: #fffdf8;
+
+  border-bottom: 1px solid #e7ddd0;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 48px;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  z-index: 10;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: 0;
+}
+
+.navbar-logo {
+  width: 48px !important;
+  height: 48px !important;
+
+  min-width: 48px;
+  min-height: 48px;
+
+  max-width: 48px;
+  max-height: 48px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.navbar-left > div {
+  min-width: 0;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.navbar-title {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 24px;
+
+  line-height: 1.1;
+
+  font-weight: 700;
+
+  color: #2b2b2b;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.navbar-subtitle {
+  margin: 6px 0 0;
+
+  color: #7a1f2b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.navbar-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+/* =========================================
+   USER INFO
+========================================= */
+
+.user-info {
+  text-align: right;
+}
+
+.user-info h3 {
+  margin: 0;
+
+  color: #2b2b2b;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.user-info span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #7a1f2b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.logout-btn {
+  height: 52px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #7a1f2b;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #5f1620;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .navbar-title {
+    font-size: 20px;
+  }
+
+  .navbar-subtitle {
+    font-size: 10px;
+  }
+
+  .navbar-right {
+    gap: 15px;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .navbar-title {
+    font-size: 18px;
+  }
+
+  .navbar-subtitle {
+    display: none;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .logout-btn {
+    height: 44px;
+    padding: 0 15px;
+  }
+}
