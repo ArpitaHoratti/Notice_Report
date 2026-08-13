@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Login from "./pages/Login";
-import TeacherDashboard from "./pages/TeacherDashboard";
+import Dashboard from "./dashboard/Dashboard";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("login");
@@ -17,7 +17,7 @@ function App() {
       )}
 
       {currentPage === "teacher" && (
-        <TeacherDashboard user={loggedInUser} />
+        <Dashboard user={loggedInUser} />
       )}
     </>
   );
