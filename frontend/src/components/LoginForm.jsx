@@ -182,7 +182,7 @@ function LoginForm({ setCurrentPage, setLoggedInUser }) {
         <span>OR CONTINUE WITH</span>
       </div>
 
-      <GoogleButton />
+      <GoogleButton setCurrentPage={setCurrentPage} setLoggedInUser={setLoggedInUser} />
     </>
   );
 }

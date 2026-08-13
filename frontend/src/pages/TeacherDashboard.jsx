@@ -17,7 +17,7 @@ import {
 import { getDocuments, deleteDocument } from "../utils/storage";
 import "./TeacherDashboard.css";
 
-function TeacherDashboard({ user, setCurrentPage, setLoggedInUser }) {
+function TeacherDashboard({ user, setCurrentPage, setLoggedInUser, setSelectedDocForEdit }) {
   const [documents, setDocuments] = useState([]);
   const [activeTab, setActiveTab] = useState("ALL");
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -32,10 +32,12 @@ function TeacherDashboard({ user, setCurrentPage, setLoggedInUser }) {
   };
 
   const handleCreateNotice = () => {
+    if (setSelectedDocForEdit) setSelectedDocForEdit(null);
     setCurrentPage("notice");
   };
 
   const handleCreateReport = () => {
+    if (setSelectedDocForEdit) setSelectedDocForEdit(null);
     setCurrentPage("report");
   };
 
@@ -166,7 +168,7 @@ function TeacherDashboard({ user, setCurrentPage, setLoggedInUser }) {
                 </div>
                 <h3>Create Notice</h3>
                 <p>Create official college notices using the Jabin Science College template with Word & PDF export.</p>
-                <button type="button" className="open-btn">
+                <button type="button" className="open-btn" onClick={(e) => { e.stopPropagation(); handleCreateNotice(); }}>
                   <span>Create Notice</span>
                   <span>→</span>
                 </button>
@@ -179,7 +181,7 @@ function TeacherDashboard({ user, setCurrentPage, setLoggedInUser }) {
                 </div>
                 <h3>Create Report</h3>
                 <p>Draft academic progress reports and departmental performance evaluations.</p>
-                <button type="button" className="open-btn">
+                <button type="button" className="open-btn" onClick={(e) => { e.stopPropagation(); handleCreateReport(); }}>
                   <span>Create Report</span>
                   <span>→</span>
                 </button>
@@ -328,12 +330,12 @@ function TeacherDashboard({ user, setCurrentPage, setLoggedInUser }) {
               <button
                 className="primary-modal-btn"
                 onClick={() => {
-                  setSelectedDoc(null);
-                  if (selectedDoc.type === "Report") {
-                    setCurrentPage("report");
-                  } else {
-                    setCurrentPage("notice");
+                  if (setSelectedDocForEdit) {
+                    setSelectedDocForEdit(selectedDoc);
                   }
+                  const targetPage = selectedDoc.type === "Report" ? "report" : "notice";
+                  setSelectedDoc(null);
+                  setCurrentPage(targetPage);
                 }}
               >
                 Open in Editor

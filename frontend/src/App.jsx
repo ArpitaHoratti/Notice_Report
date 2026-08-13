@@ -17,12 +17,9 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
   // =========================================
-  // LOGOUT
+  // SELECTED DOCUMENT FOR EDITING
   // =========================================
-  const handleLogout = () => {
-    setLoggedInUser(null);
-    setCurrentPage("login");
-  };
+  const [selectedDocForEdit, setSelectedDocForEdit] = useState(null);
 
   // =========================================
   // RENDER
@@ -41,8 +38,14 @@ function App() {
       {currentPage === "teacher" && (
         <TeacherDashboard
           user={loggedInUser}
-          setCurrentPage={setCurrentPage}
+          setCurrentPage={(page) => {
+            if (page === "notice" || page === "report") {
+              // Reset edit doc if navigated directly from sidebar action buttons
+            }
+            setCurrentPage(page);
+          }}
           setLoggedInUser={setLoggedInUser}
+          setSelectedDocForEdit={setSelectedDocForEdit}
         />
       )}
 
@@ -51,6 +54,7 @@ function App() {
         <Notice
           user={loggedInUser}
           setCurrentPage={setCurrentPage}
+          editingDoc={selectedDocForEdit}
         />
       )}
 
@@ -59,6 +63,7 @@ function App() {
         <CreateReport
           user={loggedInUser}
           setCurrentPage={setCurrentPage}
+          editingDoc={selectedDocForEdit}
         />
       )}
     </div>
