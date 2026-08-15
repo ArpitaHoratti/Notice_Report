@@ -1,0 +1,824 @@
+/* =========================================================
+   REPORT BUILDER
+========================================================= */
+
+.report-builder-page {
+    min-height: 100vh;
+    background: #f2eee8;
+    color: #222;
+  }
+  
+  
+  /* =========================================================
+     TOP BAR
+  ========================================================= */
+  
+  .report-topbar {
+    height: 70px;
+  
+    background: #fffdf8;
+  
+    border-bottom: 1px solid #e7ddd0;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content: space-between;
+  
+    padding: 0 22px;
+  
+    position: sticky;
+  
+    top: 0;
+  
+    z-index: 100;
+  }
+  
+  
+  .report-back-button,
+  .report-save-button,
+  .report-print-button,
+  .report-download-button {
+    border: none;
+  
+    cursor: pointer;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 7px;
+  
+    font-weight: 600;
+  }
+  
+  
+  .report-back-button {
+    background: transparent;
+  
+    color: #7a1f2b;
+  
+    font-size: 14px;
+  }
+  
+  
+  .report-topbar-title {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 8px;
+  
+    font-weight: 800;
+  
+    color: #7a1f2b;
+  }
+  
+  
+  .report-actions {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 8px;
+  }
+  
+  
+  .report-save-button,
+  .report-print-button,
+  .report-download-button {
+    padding: 9px 14px;
+  
+    border-radius: 7px;
+  
+    font-size: 13px;
+  }
+  
+  
+  .report-save-button {
+    background: #7a1f2b;
+  
+    color: white;
+  }
+  
+  
+  .report-print-button {
+    background: white;
+  
+    color: #7a1f2b;
+  
+    border: 1px solid #7a1f2b;
+  }
+  
+  
+  .report-download-button {
+    background: #333;
+  
+    color: white;
+  }
+  
+  
+  /* =========================================================
+     WORKSPACE
+  ========================================================= */
+  
+  .report-workspace {
+    display: flex;
+  
+    height: calc(100vh - 70px);
+  
+    overflow: hidden;
+  }
+  
+  
+  /* =========================================================
+     EDITOR
+  ========================================================= */
+  
+  .report-editor {
+    width: 370px;
+  
+    min-width: 370px;
+  
+    background: #fffdf8;
+  
+    border-right: 1px solid #e7ddd0;
+  
+    overflow-y: auto;
+  
+    padding: 25px;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  .report-editor-header h2 {
+    margin: 0;
+  
+    color: #7a1f2b;
+  
+    font-size: 21px;
+  }
+  
+  
+  .report-editor-header p {
+    margin: 6px 0 20px;
+  
+    color: #777;
+  
+    font-size: 12px;
+  
+    line-height: 1.5;
+  }
+  
+  
+  .report-editor-section {
+    border-top: 1px solid #e7ddd0;
+  
+    padding-top: 18px;
+  
+    margin-top: 18px;
+  }
+  
+  
+  .report-editor-section h3 {
+    margin: 0 0 14px;
+  
+    color: #7a1f2b;
+  
+    font-size: 14px;
+  
+    text-transform: uppercase;
+  
+    letter-spacing: 0.04em;
+  }
+  
+  
+  .report-editor-section label {
+    display: block;
+  
+    margin: 12px 0 5px;
+  
+    font-size: 11px;
+  
+    font-weight: 700;
+  
+    color: #444;
+  }
+  
+  
+  .report-editor-section input,
+  .report-editor-section textarea {
+    width: 100%;
+  
+    box-sizing: border-box;
+  
+    border: 1px solid #ded5ca;
+  
+    border-radius: 7px;
+  
+    background: white;
+  
+    padding: 9px 10px;
+  
+    font-family: inherit;
+  
+    font-size: 13px;
+  
+    color: #222;
+  
+    outline: none;
+  }
+  
+  
+  .report-editor-section input:focus,
+  .report-editor-section textarea:focus {
+    border-color: #7a1f2b;
+  
+    box-shadow: 0 0 0 2px rgba(122, 31, 43, 0.08);
+  }
+  
+  
+  .report-editor-section textarea {
+    resize: vertical;
+  
+    line-height: 1.5;
+  }
+  
+  
+  .photo-help {
+    font-size: 12px;
+  
+    color: #777;
+  
+    line-height: 1.5;
+  }
+  
+  
+  /* =========================================================
+     PREVIEW AREA
+  ========================================================= */
+  
+  .report-preview-container {
+    flex: 1;
+  
+    overflow: auto;
+  
+    background: #e9e5df;
+  
+    padding: 35px;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     REPORT WRAPPER
+  ========================================================= */
+  
+  .report-preview-wrapper {
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+    gap: 30px;
+  }
+  
+  
+  /* =========================================================
+     A4 PAGE
+  ========================================================= */
+  
+  .report-page {
+    width: 210mm;
+  
+    min-height: 297mm;
+  
+    background: white;
+  
+    box-sizing: border-box;
+  
+    padding: 13mm 18mm 18mm 18mm;
+  
+    position: relative;
+  
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.13);
+  
+    color: #000;
+  
+    font-family: "Times New Roman", Times, serif;
+  
+    font-size: 12pt;
+  }
+  
+  
+  .report-page-two {
+    page-break-before: always;
+  }
+  
+  
+  /* =========================================================
+     HEADER
+  ========================================================= */
+  
+  .report-college-header {
+    display: flex;
+  
+    position: relative;
+  
+    min-height: 41mm;
+  }
+  
+  
+  .report-header-left {
+    width: 32mm;
+  
+    flex-shrink: 0;
+  
+    font-family: Arial, sans-serif;
+  
+    font-size: 7pt;
+  
+    line-height: 1.35;
+  
+    padding-top: 1mm;
+  }
+  
+  
+  .report-header-main {
+    flex: 1;
+  
+    text-align: center;
+  
+    line-height: 1.05;
+  }
+  
+  
+  .report-society {
+    margin: 0;
+  
+    font-size: 11pt;
+  
+    font-weight: 700;
+  }
+  
+  
+  .report-college-name {
+    margin: 2px 0;
+  
+    font-size: 18pt;
+  
+    font-weight: 800;
+  
+    color: #d00000;
+  }
+  
+  
+  .report-autonomous {
+    margin: 3px 0;
+  
+    font-size: 11pt;
+  
+    font-weight: 700;
+  
+    color: #0067ad;
+  }
+  
+  
+  .report-affiliation {
+    margin: 2px 0;
+  
+    font-size: 7.5pt;
+  
+    font-weight: 700;
+  
+    color: #0067ad;
+  }
+  
+  
+  .report-approval {
+    margin: 2px 0;
+  
+    font-size: 7pt;
+  
+    line-height: 1.3;
+  
+    font-weight: 700;
+  
+    color: #0067ad;
+  }
+  
+  
+  .report-naac {
+    margin: 5px 0 0;
+  
+    font-size: 8pt;
+  
+    font-weight: 700;
+  
+    color: #93372d;
+  }
+  
+  
+  .report-address {
+    margin: 2px 0;
+  
+    font-size: 8pt;
+  
+    font-weight: 700;
+  
+    color: #93372d;
+  }
+  
+  
+  /* =========================================================
+     BCA BAR
+  ========================================================= */
+  
+  .report-bca {
+    text-align: center;
+  
+    font-size: 13pt;
+  
+    font-weight: 700;
+  
+    border-top: 1.3px solid #000;
+  
+    border-bottom: 1.3px solid #000;
+  
+    padding: 3px 0;
+  
+    margin-top: 2mm;
+  
+    margin-bottom: 7mm;
+  }
+  
+  
+  /* =========================================================
+     TITLE
+  ========================================================= */
+  
+  .report-title {
+    text-align: center;
+  
+    font-size: 15pt;
+  
+    font-weight: 700;
+  
+    margin-top: 5mm;
+  
+    line-height: 1.4;
+  }
+  
+  
+  .report-on-date {
+    text-align: center;
+  
+    font-size: 12pt;
+  
+    margin-top: 2mm;
+  
+    margin-bottom: 8mm;
+  }
+  
+  
+  /* =========================================================
+     INFORMATION
+  ========================================================= */
+  
+  .report-information {
+    width: 100%;
+  
+    margin-top: 2mm;
+  }
+  
+  
+  .report-row {
+    display: flex;
+  
+    align-items: flex-start;
+  
+    width: 100%;
+  
+    min-height: 8mm;
+  
+    line-height: 1.35;
+  }
+  
+  
+  .report-label {
+    width: 63mm;
+  
+    flex-shrink: 0;
+  
+    font-weight: 700;
+  
+    padding-right: 5mm;
+  }
+  
+  
+  .report-value {
+    flex: 1;
+  
+    font-weight: 400;
+  }
+  
+  
+  /* =========================================================
+     OBJECTIVE / OUTCOME
+  ========================================================= */
+  
+  .report-content-row {
+    display: flex;
+  
+    align-items: flex-start;
+  
+    margin-top: 5mm;
+  
+    line-height: 1.4;
+  }
+  
+  
+  .report-content-label {
+    width: 63mm;
+  
+    flex-shrink: 0;
+  
+    font-weight: 700;
+  
+    padding-right: 5mm;
+  }
+  
+  
+  .report-content-text {
+    flex: 1;
+  
+    text-align: justify;
+  
+    white-space: pre-line;
+  }
+  
+  
+  /* =========================================================
+     PARAGRAPHS
+  ========================================================= */
+  
+  .report-paragraph,
+  .report-continuation,
+  .report-vote {
+    margin: 6mm 0 0;
+  
+    line-height: 1.5;
+  
+    text-align: justify;
+  }
+  
+  
+  .report-continuation {
+    margin-top: 9mm;
+  }
+  
+  
+  .report-vote {
+    margin-top: 7mm;
+  }
+  
+  
+  /* =========================================================
+     PHOTO GALLERY
+  ========================================================= */
+  
+  .photo-gallery-title {
+    margin-top: 12mm;
+  
+    text-align: left;
+  
+    font-size: 14pt;
+  
+    font-weight: 700;
+  }
+  
+  
+  .photo-gallery {
+    display: grid;
+  
+    grid-template-columns: repeat(2, 1fr);
+  
+    gap: 10mm;
+  
+    margin-top: 6mm;
+  }
+  
+  
+  .gallery-photo {
+    position: relative;
+  
+    height: 58mm;
+  
+    border: 1px solid #aaa;
+  
+    overflow: hidden;
+  
+    background: #f5f5f5;
+  }
+  
+  
+  .gallery-photo img {
+    width: 100%;
+  
+    height: 100%;
+  
+    object-fit: cover;
+  }
+  
+  
+  .remove-photo {
+    position: absolute;
+  
+    right: 5px;
+  
+    top: 5px;
+  
+    width: 24px;
+  
+    height: 24px;
+  
+    border: none;
+  
+    border-radius: 50%;
+  
+    background: #8b1e2d;
+  
+    color: white;
+  
+    cursor: pointer;
+  
+    font-size: 17px;
+  
+    line-height: 20px;
+  }
+  
+  
+  .add-photo-box {
+    height: 58mm;
+  
+    border: 1.5px dashed #999;
+  
+    background: #fafafa;
+  
+    cursor: pointer;
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    justify-content: center;
+  
+    align-items: center;
+  
+    gap: 4px;
+  
+    font-family: inherit;
+  }
+  
+  
+  .add-photo-box span {
+    font-size: 28px;
+  
+    color: #7a1f2b;
+  }
+  
+  
+  .add-photo-box small {
+    font-size: 10pt;
+  
+    color: #666;
+  }
+  
+  
+  /* =========================================================
+     TOAST
+  ========================================================= */
+  
+  .report-toast {
+    position: fixed;
+  
+    top: 82px;
+  
+    right: 25px;
+  
+    z-index: 1000;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 8px;
+  
+    padding: 12px 17px;
+  
+    border-radius: 8px;
+  
+    background: #7a1f2b;
+  
+    color: white;
+  
+    font-size: 13px;
+  
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  
+  /* =========================================================
+     PRINT
+  ========================================================= */
+  
+  @media print {
+  
+    body {
+      background: white !important;
+    }
+  
+  
+    .report-topbar,
+    .report-editor,
+    .report-toast {
+      display: none !important;
+    }
+  
+  
+    .report-builder-page {
+      background: white !important;
+    }
+  
+  
+    .report-workspace {
+      height: auto;
+  
+      display: block;
+  
+      overflow: visible;
+    }
+  
+  
+    .report-preview-container {
+      padding: 0;
+  
+      overflow: visible;
+  
+      background: white;
+    }
+  
+  
+    .report-preview-wrapper {
+      display: block;
+    }
+  
+  
+    .report-page {
+      width: 210mm;
+  
+      min-height: 297mm;
+  
+      margin: 0;
+  
+      box-shadow: none;
+  
+      page-break-after: always;
+    }
+  
+  }
+  
+  
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+  
+  @media (max-width: 900px) {
+  
+    .report-workspace {
+      flex-direction: column;
+  
+      height: auto;
+    }
+  
+  
+    .report-editor {
+      width: 100%;
+  
+      min-width: 0;
+  
+      max-height: none;
+    }
+  
+  
+    .report-preview-container {
+      min-height: 100vh;
+  
+      padding: 15px;
+    }
+  
+  }

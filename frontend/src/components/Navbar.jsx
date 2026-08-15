@@ -1,9 +1,13 @@
 import { LogOut } from "lucide-react";
+import "./Navbar.css";
 
-function Navbar({ user }) {
+function Navbar({ user, onLogout }) {
   return (
     <header className="navbar">
+
+      {/* LEFT SIDE */}
       <div className="navbar-left">
+
         <img
           src="/logo.png"
           alt="College Logo"
@@ -19,19 +23,37 @@ function Navbar({ user }) {
             KLE BCA PC Jabin Science College
           </p>
         </div>
+
       </div>
 
+
+      {/* RIGHT SIDE */}
       <div className="navbar-right">
+
         <div className="user-info">
-          <h3>{user.name}</h3>
-          <span>{user.role}</span>
+          <h3>{user?.name}</h3>
+
+          <span>
+            {user?.role}
+          </span>
         </div>
 
-        <button className="logout-btn">
+
+        {/* LOGOUT BUTTON */}
+        <button
+          className="logout-btn"
+          onClick={onLogout}
+          type="button"
+        >
           <LogOut size={18} />
-          Logout
+
+          <span>
+            Logout
+          </span>
         </button>
+
       </div>
+
     </header>
   );
 }
