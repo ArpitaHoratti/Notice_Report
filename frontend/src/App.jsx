@@ -4,10 +4,11 @@ import Login from "./pages/Login";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import Notice from "./pages/Notice";
 import CreateReport from "./pages/CreateReport";
+import ApprovalDashboard from "./components/ApprovalDashboard";
 
 function App() {
   // =========================================
-  // CURRENT PAGE ("login" | "teacher" | "notice" | "report")
+  // CURRENT PAGE
   // =========================================
   const [currentPage, setCurrentPage] = useState("login");
 
@@ -21,11 +22,9 @@ function App() {
   // =========================================
   const [selectedDocForEdit, setSelectedDocForEdit] = useState(null);
 
-  // =========================================
-  // RENDER
-  // =========================================
   return (
     <div className="app">
+
       {/* LOGIN PAGE */}
       {currentPage === "login" && (
         <Login
@@ -40,8 +39,9 @@ function App() {
           user={loggedInUser}
           setCurrentPage={(page) => {
             if (page === "notice" || page === "report") {
-              // Reset edit doc if navigated directly from sidebar action buttons
+              setSelectedDocForEdit(null);
             }
+
             setCurrentPage(page);
           }}
           setLoggedInUser={setLoggedInUser}
@@ -49,7 +49,7 @@ function App() {
         />
       )}
 
-      {/* NOTICE GENERATOR DASHBOARD */}
+      {/* NOTICE PAGE */}
       {currentPage === "notice" && (
         <Notice
           user={loggedInUser}
@@ -58,7 +58,7 @@ function App() {
         />
       )}
 
-      {/* ACADEMIC REPORT GENERATOR */}
+      {/* REPORT PAGE */}
       {currentPage === "report" && (
         <CreateReport
           user={loggedInUser}
@@ -66,6 +66,20 @@ function App() {
           editingDoc={selectedDocForEdit}
         />
       )}
+
+      {/* =========================================
+          COORDINATOR DASHBOARD
+      ========================================= */}
+      {currentPage === "coordinator" && (
+        <ApprovalDashboard
+          user={loggedInUser}
+          onLogout={() => {
+            setLoggedInUser(null);
+            setCurrentPage("login");
+          }}
+        />
+      )}
+
     </div>
   );
 }
