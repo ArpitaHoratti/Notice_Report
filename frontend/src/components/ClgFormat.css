@@ -1,0 +1,251 @@
+/* =====================================================
+   src/components/ClgFormat.css
+
+   Exact replica of the KLE "clg_format" seminar report
+   document. Colors/fonts read from the original document:
+
+     red     #FF0000  -> college name
+     blue    #0070C0  -> "AUTONOMOUS" + affiliation lines
+     maroon  #943634  -> accreditation + address
+     black   #000000  -> everything else
+
+     Cambria           -> the letterhead block (top)
+     Times New Roman   -> everything below the letterhead
+
+   Sized to fit a single A4 page (210mm x 297mm).
+===================================================== */
+
+.clg-format-page {
+  width: 210mm;
+  min-height: 297mm;
+  flex-shrink: 0;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  padding: 12mm 14mm;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+
+  color: #000000;
+
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+/* =====================================================
+   LETTERHEAD / HEADER
+===================================================== */
+
+.clg-format-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  text-align: center;
+
+  font-family: Cambria, Georgia, serif;
+}
+
+.clg-format-logo-col {
+  flex: 0 0 20mm;
+}
+
+.clg-format-logo {
+  width: 40mm;
+  height: 19mm;
+
+  object-fit: contain;
+  display: block;
+}
+
+.clg-format-center-col {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.clg-kle-society {
+  font-size: 9.5pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+.clg-college-name {
+  font-size: 17.5pt;
+  font-weight: bold;
+  color: #ff0000;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.clg-autonomous {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #0070c0;
+}
+
+.clg-header-small {
+  font-size: 6.3pt;
+  font-weight: bold;
+  color: #0070c0;
+  line-height: 1.3;
+}
+
+.clg-accreditation {
+  font-size: 11pt;
+  color: #943634;
+  margin-top: 2px;
+}
+
+.clg-accreditation sup {
+  font-size: 75%;
+  top: -0.4em;
+}
+
+.clg-address {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #943634;
+  margin-top: 2px;
+}
+
+.clg-format-contact {
+  flex: 0 0 auto;
+
+  align-self: flex-start;
+  margin-top: 3px;
+
+  text-align: left;
+
+  font-family: "Times New Roman", Times, serif;
+  font-size: 7.6pt;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.clg-format-contact div {
+  display: flex;
+  gap: 5px;
+}
+
+.clg-format-contact span:first-child {
+  min-width: 42px;
+}
+
+
+/* =====================================================
+   BACHELOR OF COMPUTER APPLICATION BANNER
+===================================================== */
+
+.clg-bca-title {
+  margin-top: 6px;
+  margin-left: -14mm;
+  margin-right: -14mm;
+
+  padding: 3px 14mm;
+
+  border-top: 1.4px solid #000000;
+  border-bottom: 1.4px solid #000000;
+
+  text-align: center;
+
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14.5pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.clg-subtitle {
+  margin: 10px 0;
+
+  text-align: center;
+
+  font-size: 16.5pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   DETAILS TABLE
+===================================================== */
+
+.clg-format-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 10.7pt;
+}
+
+.clg-format-table td {
+  border: 1px solid #000000;
+
+  padding: 5px 10px;
+
+  vertical-align: middle;
+}
+
+.clg-label {
+  width: 32%;
+
+  text-align: center;
+  font-weight: bold;
+}
+
+.clg-value {
+  text-align: left;
+}
+
+.clg-value p {
+  margin: 0 0 2px 0;
+}
+
+.clg-value p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =====================================================
+   SIGNATURE
+===================================================== */
+
+.clg-signature-block {
+  margin-top: 26px;
+}
+
+.clg-signature-line {
+  width: 60mm;
+  border-top: 1.2px solid #000000;
+  margin-bottom: 6px;
+}
+
+.clg-signature-label {
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+  .clg-format-page {
+    box-shadow: none;
+    margin: 0;
+    width: auto;
+    min-height: auto;
+  }
+
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+}

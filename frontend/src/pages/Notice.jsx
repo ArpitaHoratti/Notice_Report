@@ -1,83 +1,189 @@
-// src/pages/Notice.jsx
-
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash2, Plus } from "lucide-react";
 
 import "./Notice.css";
 
 import CollegeNotice from "../components/CollegeNotice";
 
+import users from "../data/users";
+import { downloadNoticeAsWord } from "../utils/downloadNotice";
 
 export default function Notice({ setCurrentPage }) {
+  // =====================================================
+  // NOTICE DATA
+  // =====================================================
 
   const [values, setValues] = useState({
-
     noticeDate: "",
-
-    className: "",
-
-    division: "",
-
-    activityName: "",
-
-    time: "",
-
-    time2: "",
-
-    division2: "",
-
-    eventDate: "",
-
-    day: "",
-
+    semester: "",
+    activityType: "",
+    topic: "",
     classroom: "",
-
+    eventDate: "",
+    scheduleTitle: "Seminar Schedule",
     note: "",
+    coordinator: "",
 
-    coordinatorTitle: "",
-
-    coordinatorName: "",
-
-    academicTitle: "",
-
-    academicName: "",
-
-    principalTitle: "",
-
-    principalName: "",
-
+    schedule: [
+      {
+        timing: "",
+        date: "",
+        division: "",
+      },
+      {
+        timing: "",
+        date: "",
+        division: "",
+      },
+    ],
   });
 
+  // =====================================================
+  // GET COORDINATORS
+  // =====================================================
+
+  const coordinators = users.filter(
+    (user) => user.role === "Coordinator"
+  );
+
+  // =====================================================
+  // HANDLE NORMAL INPUTS
+  // =====================================================
 
   const handleChange = (e) => {
-
-    const {
-      name,
-      value,
-    } = e.target;
-
+    const { name, value } = e.target;
 
     setValues((prev) => ({
-
       ...prev,
-
       [name]: value,
-
     }));
-
   };
 
+  // =====================================================
+  // HANDLE SCHEDULE ROW
+  // =====================================================
+
+  const handleScheduleChange = (
+    index,
+    field,
+    value
+  ) => {
+    setValues((prev) => {
+      const updatedSchedule = [...prev.schedule];
+
+      updatedSchedule[index] = {
+        ...updatedSchedule[index],
+        [field]: value,
+      };
+
+      return {
+        ...prev,
+        schedule: updatedSchedule,
+      };
+    });
+  };
+
+  // =====================================================
+  // ADD NEW SCHEDULE ROW
+  // =====================================================
+
+  const addScheduleRow = () => {
+    setValues((prev) => ({
+      ...prev,
+
+      schedule: [
+        ...prev.schedule,
+        {
+          timing: "",
+          date: "",
+          division: "",
+        },
+      ],
+    }));
+  };
+
+  // =====================================================
+  // DELETE SCHEDULE ROW
+  // =====================================================
+
+  const deleteScheduleRow = (index) => {
+    setValues((prev) => {
+      if (prev.schedule.length <= 1) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+
+        schedule: prev.schedule.filter(
+          (_, i) => i !== index
+        ),
+      };
+    });
+  };
+
+  // =====================================================
+  // SEND TO COORDINATOR
+  // =====================================================
+
+  const handleSendToCoordinator = () => {
+    if (!values.coordinator) {
+      alert(
+        "Please select a Coordinator before sending the Notice."
+      );
+
+      return;
+    }
+
+    const selectedCoordinator =
+      coordinators.find(
+        (coordinator) =>
+          coordinator.email === values.coordinator
+      );
+
+    if (!selectedCoordinator) {
+      alert(
+        "Selected Coordinator was not found."
+      );
+
+      return;
+    }
+
+    console.log(
+      "Notice sent to Coordinator:",
+      selectedCoordinator
+    );
+
+    console.log(
+      "Notice Data:",
+      values
+    );
+
+    alert(
+      `Notice sent to ${selectedCoordinator.name}`
+    );
+  };
+
+  // =====================================================
+  // DOWNLOAD WORD
+  // =====================================================
+
+  const handleDownloadWord = () => {
+    downloadNoticeAsWord(values);
+  };
 
   return (
-
     <div className="notice-page">
-
 
       {/* =================================================
           LEFT SIDE - CREATE NOTICE
       ================================================= */}
 
       <aside className="notice-form">
+
+        {/* =================================================
+            BACK BUTTON
+        ================================================= */}
 
         <button
           type="button"
@@ -86,22 +192,24 @@ export default function Notice({ setCurrentPage }) {
             setCurrentPage("teacher")
           }
         >
-
           <ArrowLeft size={18} />
 
           <span>
             Dashboard
           </span>
-
         </button>
 
+        {/* =================================================
+            TITLE
+        ================================================= */}
 
         <h1>
           Create Notice
         </h1>
 
-
-        {/* NOTICE DATE */}
+        {/* =================================================
+            NOTICE DATE
+        ================================================= */}
 
         <label>
           Notice Date
@@ -114,68 +222,99 @@ export default function Notice({ setCurrentPage }) {
           onChange={handleChange}
         />
 
-
-        {/* CLASS */}
+        {/* =================================================
+            SEMESTER
+        ================================================= */}
 
         <label>
-          Class
+          Semester
+        </label>
+
+        <select
+          name="semester"
+          value={values.semester}
+          onChange={handleChange}
+        >
+          <option value="">
+            Select Semester
+          </option>
+
+          <option value="I semester">
+            I Semester
+          </option>
+
+          <option value="II semester">
+            II Semester
+          </option>
+
+          <option value="III semester">
+            III Semester
+          </option>
+
+          <option value="IV semester">
+            IV Semester
+          </option>
+
+          <option value="V semester">
+            V Semester
+          </option>
+
+          <option value="VI semester">
+            VI Semester
+          </option>
+        </select>
+
+        {/* =================================================
+            ACTIVITY TYPE
+        ================================================= */}
+
+        <label>
+          Activity Type
         </label>
 
         <input
           type="text"
-          name="className"
-          placeholder="BCA II Semester"
-          value={values.className}
+          name="activityType"
+          placeholder="Seminar"
+          value={values.activityType}
           onChange={handleChange}
         />
 
-
-        {/* DIVISION */}
+        {/* =================================================
+            TOPIC
+        ================================================= */}
 
         <label>
-          Division
+          Topic
         </label>
 
         <input
           type="text"
-          name="division"
-          placeholder="A1, A2, A3"
-          value={values.division}
+          name="topic"
+          placeholder="Cloud Computing"
+          value={values.topic}
           onChange={handleChange}
         />
 
-
-        {/* ACTIVITY */}
+        {/* =================================================
+            VENUE
+        ================================================= */}
 
         <label>
-          Activity
+          Venue
         </label>
 
         <input
           type="text"
-          name="activityName"
-          placeholder="Cloud Computing Seminar"
-          value={values.activityName}
+          name="classroom"
+          placeholder="Hall No. 03"
+          value={values.classroom}
           onChange={handleChange}
         />
 
-
-        {/* TIME */}
-
-        <label>
-          Time
-        </label>
-
-        <input
-          type="text"
-          name="time"
-          placeholder="10:00 am to 1:00 pm"
-          value={values.time}
-          onChange={handleChange}
-        />
-
-
-        {/* EVENT DATE */}
+        {/* =================================================
+            EVENT DATE
+        ================================================= */}
 
         <label>
           Event Date
@@ -188,38 +327,146 @@ export default function Notice({ setCurrentPage }) {
           onChange={handleChange}
         />
 
-
-        {/* DAY */}
+        {/* =================================================
+            SCHEDULE TITLE
+        ================================================= */}
 
         <label>
-          Day
+          Schedule Title
         </label>
 
         <input
           type="text"
-          name="day"
-          placeholder="Tuesday"
-          value={values.day}
+          name="scheduleTitle"
+          placeholder="Seminar Schedule"
+          value={values.scheduleTitle}
           onChange={handleChange}
         />
 
+        {/* =================================================
+            SCHEDULE
+        ================================================= */}
 
-        {/* CLASSROOM */}
+        <h3 className="schedule-title">
+          Schedule
+        </h3>
 
-        <label>
-          Classroom
-        </label>
+        <table className="schedule-table">
 
-        <input
-          type="text"
-          name="classroom"
-          placeholder="Hall No. 03"
-          value={values.classroom}
-          onChange={handleChange}
-        />
+          <thead>
+            <tr>
+              <th>
+                Timing
+              </th>
 
+              <th>
+                Date
+              </th>
 
-        {/* NOTE */}
+              <th>
+                Division
+              </th>
+
+              <th>
+                Action
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {values.schedule.map(
+              (row, index) => (
+                <tr key={index}>
+
+                  {/* TIMING */}
+
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="10:00 am to 1:00 pm"
+                      value={row.timing}
+                      onChange={(e) =>
+                        handleScheduleChange(
+                          index,
+                          "timing",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </td>
+
+                  {/* DATE */}
+
+                  <td>
+                    <input
+                      type="date"
+                      value={row.date}
+                      onChange={(e) =>
+                        handleScheduleChange(
+                          index,
+                          "date",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </td>
+
+                  {/* DIVISION */}
+
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="A1, A2, A3"
+                      value={row.division}
+                      onChange={(e) =>
+                        handleScheduleChange(
+                          index,
+                          "division",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </td>
+
+                  {/* DELETE */}
+
+                  <td>
+                    <button
+                      type="button"
+                      className="delete-row-btn"
+                      onClick={() =>
+                        deleteScheduleRow(index)
+                      }
+                      title="Delete row"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </td>
+
+                </tr>
+              )
+            )}
+          </tbody>
+
+        </table>
+
+        {/* =================================================
+            ADD NEW SCHEDULE ROW
+        ================================================= */}
+
+        <button
+          type="button"
+          className="add-row-btn"
+          onClick={addScheduleRow}
+        >
+          <Plus size={17} />
+
+          Add Schedule Row
+        </button>
+
+        {/* =================================================
+            NOTE
+        ================================================= */}
 
         <label>
           Note
@@ -233,9 +480,62 @@ export default function Notice({ setCurrentPage }) {
           onChange={handleChange}
         />
 
+        {/* =================================================
+            SELECT COORDINATOR
+        ================================================= */}
+
+        <label>
+          Select Coordinator
+        </label>
+
+        <select
+          name="coordinator"
+          value={values.coordinator}
+          onChange={handleChange}
+        >
+          <option value="">
+            Select a Coordinator...
+          </option>
+
+          {coordinators.map(
+            (coordinator) => (
+              <option
+                key={coordinator.email}
+                value={coordinator.email}
+              >
+                {coordinator.coordinatorType} —{" "}
+                {coordinator.name}
+              </option>
+            )
+          )}
+        </select>
+
+        {/* =================================================
+            SEND TO COORDINATOR
+        ================================================= */}
+
+        <button
+          type="button"
+          className="send-coordinator-btn"
+          disabled={!values.coordinator}
+          onClick={handleSendToCoordinator}
+        >
+          Send to Coordinator
+        </button>
+
+        {/* =================================================
+            DOWNLOAD WORD
+        ================================================= */}
+
+        <button
+          type="button"
+          className="download-word-btn"
+          onClick={handleDownloadWord}
+        >
+          Download Word
+        </button>
 
       </aside>
-
 
       {/* =================================================
           RIGHT SIDE - NOTICE PREVIEW
@@ -247,7 +547,6 @@ export default function Notice({ setCurrentPage }) {
           Notice Preview
         </div>
 
-
         <div className="notice-preview-content">
 
           <CollegeNotice
@@ -258,8 +557,6 @@ export default function Notice({ setCurrentPage }) {
 
       </main>
 
-
     </div>
-
   );
 }

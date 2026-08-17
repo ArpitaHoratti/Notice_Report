@@ -1,0 +1,1032 @@
+/* =========================================================
+   REPORT PAGE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f0e9;
+  color: #222;
+}
+
+
+/* =========================================================
+   MAIN REPORT WORKSPACE
+   ========================================================= */
+
+.report-page {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #f4f0e9;
+}
+
+.report-workspace {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT EDITOR
+   ========================================================= */
+
+.report-editor {
+  height: 100vh;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #ffffff;
+
+  padding: 34px 38px 60px 38px;
+
+  border-right: 1px solid #ddd6cc;
+
+  scrollbar-width: thin;
+  scrollbar-color: #aaa49c transparent;
+}
+
+.report-editor::-webkit-scrollbar {
+  width: 8px;
+}
+
+.report-editor::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.report-editor::-webkit-scrollbar-thumb {
+  background: #aaa49c;
+  border-radius: 10px;
+}
+
+.report-editor::-webkit-scrollbar-thumb:hover {
+  background: #8d8881;
+}
+
+
+/* =========================================================
+   EDITOR HEADER
+   ========================================================= */
+
+.report-editor-heading {
+  margin-bottom: 46px;
+}
+
+.report-editor-heading h1 {
+  margin: 0;
+
+  color: #941b2e;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 34px;
+  font-weight: 800;
+
+  line-height: 1.15;
+}
+
+.report-editor-heading p {
+  margin: 14px 0 0;
+
+  max-width: 390px;
+
+  color: #716b66;
+
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FORM SECTIONS
+   ========================================================= */
+
+.report-form-section {
+  margin-bottom: 38px;
+}
+
+.report-form-section h2 {
+  margin: 0 0 20px;
+
+  color: #172333;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.report-field {
+  margin-bottom: 22px;
+}
+
+.report-field label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #172333;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.report-field input,
+.report-field textarea {
+  width: 100%;
+
+  border: 1px solid #d9d1c7;
+  border-radius: 10px;
+
+  background: #fffdfb;
+
+  color: #252525;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.report-field input {
+  height: 48px;
+
+  padding: 0 14px;
+}
+
+.report-field textarea {
+  min-height: 150px;
+
+  padding: 13px 14px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.report-field input:focus,
+.report-field textarea:focus {
+  border-color: #941b2e;
+
+  box-shadow: 0 0 0 3px rgba(148, 27, 46, 0.08);
+}
+
+.report-field input::placeholder,
+.report-field textarea::placeholder {
+  color: #99918a;
+}
+
+
+/* =========================================================
+   PHOTO UPLOAD
+   ========================================================= */
+
+.photo-help {
+  margin: -8px 0 18px;
+
+  color: #716b66;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.photo-upload-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 0 18px;
+
+  border: 1px solid #941b2e;
+  border-radius: 8px;
+
+  background: #941b2e;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.photo-upload-button input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.uploaded-photo-list {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.uploaded-photo-item {
+  overflow: hidden;
+
+  border: 1px solid #ddd5cc;
+  border-radius: 8px;
+
+  background: #fff;
+}
+
+.uploaded-photo-item img {
+  display: block;
+
+  width: 100%;
+  height: 90px;
+
+  object-fit: cover;
+}
+
+.uploaded-photo-item button {
+  width: 100%;
+
+  padding: 8px;
+
+  border: 0;
+
+  background: #f4f0e9;
+  color: #941b2e;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   RIGHT PREVIEW AREA
+   ========================================================= */
+
+.report-preview-area {
+  min-width: 0;
+  min-height: 0;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #e9e4dc;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PREVIEW TITLE
+   ========================================================= */
+
+.report-preview-toolbar {
+  flex: 0 0 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px solid #d6d0c8;
+
+  background: #f4f0e9;
+
+  color: #625b54;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   PREVIEW SCROLL
+   ========================================================= */
+
+.report-preview-scroll {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  padding: 40px 30px 70px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #aaa49c transparent;
+}
+
+.report-preview-scroll::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+.report-preview-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.report-preview-scroll::-webkit-scrollbar-thumb {
+  background: #aaa49c;
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   REPORT DOCUMENT
+   ========================================================= */
+
+.college-report-document {
+  width: max-content;
+
+  margin: 0 auto;
+
+  font-family:
+    "Times New Roman",
+    Times,
+    serif;
+
+  color: #000;
+}
+
+
+/* =========================================================
+   A4 PAGE
+   ========================================================= */
+
+.report-a4-page {
+  position: relative;
+
+  width: 210mm;
+  min-width: 210mm;
+
+  height: 297mm;
+  min-height: 297mm;
+
+  margin: 0 auto 24px;
+
+  padding: 14mm 13mm 12mm;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.14);
+
+  overflow: hidden;
+
+  page-break-after: always;
+}
+
+.report-a4-page:last-child {
+  margin-bottom: 0;
+
+  page-break-after: auto;
+}
+
+
+/* =========================================================
+   COLLEGE HEADER
+   ========================================================= */
+
+.college-report-header {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 36mm;
+
+  display: grid;
+
+  grid-template-columns: 27mm 1fr 42mm;
+
+  align-items: start;
+
+  border-bottom: 1px solid #000;
+
+  padding-bottom: 3mm;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.college-header-logo {
+  width: 27mm;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding-top: 6mm;
+}
+
+.college-header-logo img {
+  display: block;
+
+  width: 22mm;
+  height: 22mm;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   CENTER HEADER
+   ========================================================= */
+
+.college-header-center {
+  text-align: center;
+
+  padding-top: 0;
+}
+
+.society-name {
+  margin-bottom: 0.5mm;
+
+  font-size: 8.5pt;
+  font-weight: 700;
+}
+
+.college-name {
+  color: #a11f2d;
+
+  font-size: 17pt;
+  font-weight: 700;
+
+  line-height: 1.05;
+
+  white-space: nowrap;
+}
+
+.autonomous {
+  margin-top: 0.7mm;
+
+  font-size: 10pt;
+  font-weight: 700;
+}
+
+.affiliation {
+  margin-top: 0.6mm;
+
+  color: #003c91;
+
+  font-size: 6.5pt;
+  font-weight: 700;
+
+  line-height: 1.05;
+}
+
+.approval {
+  color: #003c91;
+
+  font-size: 6pt;
+  font-weight: 700;
+
+  line-height: 1.05;
+}
+
+.naac {
+  margin-top: 1.4mm;
+
+  color: #9e342e;
+
+  font-size: 8.5pt;
+  font-weight: 700;
+}
+
+.address {
+  margin-top: 0.6mm;
+
+  color: #9e342e;
+
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTACT INFORMATION
+   ========================================================= */
+
+.college-contact {
+  padding-top: 4mm;
+
+  font-family:
+    "Times New Roman",
+    Times,
+    serif;
+
+  font-size: 5.8pt;
+
+  line-height: 1.45;
+
+  text-align: left;
+}
+
+.college-contact div {
+  white-space: nowrap;
+}
+
+.college-contact span {
+  display: inline-block;
+
+  min-width: 12mm;
+}
+
+.college-contact b {
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   PROGRAM TITLE
+   ========================================================= */
+
+.report-program-title {
+  margin-top: 3mm;
+
+  padding: 1.8mm 0;
+
+  border-bottom: 1px solid #000;
+
+  text-align: center;
+
+  font-size: 13pt;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   MAIN REPORT TITLE
+   ========================================================= */
+
+.report-main-title {
+  margin-top: 5mm;
+
+  text-align: center;
+
+  font-size: 15pt;
+  font-weight: 700;
+
+  text-decoration: underline;
+
+  line-height: 1.2;
+}
+
+.report-event-date {
+  margin-top: 1mm;
+
+  text-align: center;
+
+  font-size: 10pt;
+}
+
+
+/* =========================================================
+   INFORMATION TABLE
+   ========================================================= */
+
+.report-information-table {
+  width: 100%;
+
+  margin-top: 5mm;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-family:
+    "Times New Roman",
+    Times,
+    serif;
+
+  font-size: 8.5pt;
+
+  line-height: 1.25;
+}
+
+.report-information-table td {
+  border: 1px solid #000;
+
+  padding: 2.5mm 2.5mm;
+
+  vertical-align: top;
+
+  word-break: normal;
+}
+
+.report-information-table tr td:first-child {
+  width: 42%;
+
+  font-weight: 700;
+}
+
+.report-information-table tr td:nth-child(2) {
+  width: 58%;
+}
+
+
+/* =========================================================
+   BODY ROWS
+   ========================================================= */
+
+.large-report-row td {
+  vertical-align: top;
+}
+
+.report-body-cell {
+  line-height: 1.4;
+}
+
+.report-description-cell {
+  padding: 3mm 3mm !important;
+
+  line-height: 1.45;
+
+  text-align: justify;
+}
+
+.report-description-cell p {
+  margin: 0;
+}
+
+.vote-of-thanks {
+  margin-top: 4mm !important;
+}
+
+
+/* =========================================================
+   PAGE TWO
+   ========================================================= */
+
+.report-page-two {
+  padding-top: 14mm;
+  padding-bottom: 12mm;
+}
+
+.report-page-two-content {
+  width: 100%;
+
+  margin-top: 4mm;
+
+  border: 1px solid #000;
+
+  padding: 0;
+}
+
+
+/* =========================================================
+   PAGE TWO CONTINUATION
+   ========================================================= */
+
+.report-continuation {
+  width: 100%;
+
+  padding: 3mm 3mm 2mm;
+
+  border-bottom: 1px solid #000;
+
+  font-size: 8.5pt;
+
+  line-height: 1.35;
+
+  text-align: justify;
+}
+
+.report-continuation p {
+  margin: 0;
+}
+
+.continuation-vote {
+  margin-top: 4mm !important;
+}
+
+
+/* =========================================================
+   PHOTO GALLERY TITLE
+   ========================================================= */
+
+.photo-gallery-title {
+  width: 100%;
+
+  padding: 1.5mm 3mm;
+
+  border-bottom: 1px solid #000;
+
+  font-size: 9pt;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   PHOTO GALLERY
+   ========================================================= */
+
+.photo-gallery {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  border: 0;
+}
+
+.photo-gallery-cell {
+  position: relative;
+
+  width: 100%;
+
+  height: 47mm;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+
+  background: #fff;
+}
+
+.photo-gallery-cell:nth-child(2n) {
+  border-right: 0;
+}
+
+.photo-gallery-cell:nth-child(3),
+.photo-gallery-cell:nth-child(4) {
+  border-bottom: 0;
+}
+
+.photo-gallery-cell img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.photo-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: #777;
+
+  font-size: 9pt;
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.report-toast {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 13px 17px;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.report-toast.success {
+  color: #24723b;
+
+  border: 1px solid #b9d8c0;
+}
+
+.report-toast.error {
+  color: #9a1d2d;
+
+  border: 1px solid #e0b8bf;
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  html,
+  body,
+  #root {
+    width: 210mm;
+    min-width: 210mm;
+
+    margin: 0;
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  body {
+    overflow: visible !important;
+  }
+
+  .report-page {
+    width: 210mm;
+    height: auto;
+    min-height: auto;
+
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .report-workspace {
+    display: block;
+
+    width: 210mm;
+    height: auto;
+
+    overflow: visible;
+  }
+
+  .report-editor {
+    display: none !important;
+  }
+
+  .report-preview-area {
+    display: block;
+
+    width: 210mm;
+    height: auto;
+
+    overflow: visible;
+
+    background: #ffffff;
+  }
+
+  .report-preview-toolbar {
+    display: none !important;
+  }
+
+  .report-preview-scroll {
+    display: block;
+
+    width: 210mm;
+    height: auto;
+
+    padding: 0;
+
+    overflow: visible;
+  }
+
+  .college-report-document {
+    width: 210mm;
+
+    margin: 0;
+
+    box-shadow: none;
+  }
+
+  .report-a4-page {
+    width: 210mm;
+    min-width: 210mm;
+
+    height: 297mm;
+    min-height: 297mm;
+
+    margin: 0;
+
+    padding: 14mm 13mm 12mm;
+
+    box-shadow: none;
+
+    overflow: hidden;
+
+    page-break-after: always;
+  }
+
+  .report-a4-page:last-child {
+    page-break-after: auto;
+  }
+
+  .report-toast {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   A4 PRINT SETTINGS
+   ========================================================= */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media screen and (max-width: 1100px) {
+
+  .report-workspace {
+    grid-template-columns: 340px 1fr;
+  }
+
+  .report-editor {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+
+  .report-workspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+
+    height: 100vh;
+  }
+
+  .report-editor {
+    height: 45vh;
+
+    border-right: 0;
+    border-bottom: 1px solid #ddd6cc;
+  }
+
+  .report-preview-area {
+    height: 55vh;
+  }
+
+}

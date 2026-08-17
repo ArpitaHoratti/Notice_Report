@@ -1,5 +1,5 @@
 /* =====================================================
-   MAIN NOTICE PAGE
+   MAIN PAGE
 ===================================================== */
 
 .notice-page {
@@ -7,37 +7,28 @@
   height: 100vh;
 
   display: grid;
-
-  grid-template-columns: 430px minmax(0, 1fr);
+  grid-template-columns: 420px 1fr;
 
   background: #f3eee5;
 
   overflow: hidden;
-
-  box-sizing: border-box;
 }
 
 
 /* =====================================================
-   LEFT - CREATE NOTICE FORM
+   LEFT FORM
 ===================================================== */
 
 .notice-form {
-  width: 100%;
-  height: 100vh;
-
   background: #ffffff;
-
-  padding: 35px 32px;
-
-  box-sizing: border-box;
+  height: 100vh;
 
   overflow-y: auto;
 
-  box-shadow:
-    4px 0 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  box-sizing: border-box;
 
-  z-index: 5;
+  border-right: 1px solid #e2ddd5;
 }
 
 
@@ -46,31 +37,25 @@
 ===================================================== */
 
 .back-btn {
-  display: inline-flex;
-
+  display: flex;
   align-items: center;
-
   gap: 8px;
 
   border: none;
-
   background: transparent;
 
   color: #8b1e2d;
 
-  font-size: 16px;
-
-  font-weight: 700;
-
   cursor: pointer;
 
-  padding: 6px 0;
+  font-size: 15px;
+  font-weight: 700;
 
-  margin-bottom: 22px;
+  margin-bottom: 25px;
 }
 
 .back-btn:hover {
-  color: #65131f;
+  color: #66111f;
 }
 
 
@@ -79,14 +64,11 @@
 ===================================================== */
 
 .notice-form h1 {
-  margin: 0 0 22px;
+  margin: 0 0 30px;
 
   color: #8b1e2d;
 
   font-size: 32px;
-
-  line-height: 1.2;
-
   font-weight: 800;
 }
 
@@ -98,15 +80,12 @@
 .notice-form label {
   display: block;
 
-  margin-top: 15px;
-
-  margin-bottom: 6px;
-
-  color: #222;
-
-  font-size: 14px;
+  margin-top: 18px;
+  margin-bottom: 7px;
 
   font-weight: 700;
+
+  color: #333;
 }
 
 
@@ -115,242 +94,357 @@
 ===================================================== */
 
 .notice-form input,
+.notice-form select,
 .notice-form textarea {
   width: 100%;
 
   box-sizing: border-box;
 
-  border: 1px solid #d7d2ca;
-
+  border: 1px solid #d8d2cb;
   border-radius: 10px;
 
-  background: #ffffff;
-
-  color: #333;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: 16px;
+  font-size: 15px;
+  font-family: inherit;
 
   outline: none;
 
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  transition: 0.25s;
 }
 
-
-.notice-form input {
-  height: 50px;
-
+.notice-form input,
+.notice-form select {
+  height: 48px;
   padding: 0 14px;
 }
 
-
 .notice-form textarea {
-  min-height: 100px;
+  min-height: 120px;
 
   padding: 12px 14px;
 
   resize: vertical;
 }
 
-
-.notice-form input::placeholder,
-.notice-form textarea::placeholder {
-  color: #8a8a8a;
-}
-
-
 .notice-form input:focus,
+.notice-form select:focus,
 .notice-form textarea:focus {
   border-color: #8b1e2d;
 
   box-shadow:
-    0 0 0 3px rgba(139, 30, 45, 0.10);
+    0 0 0 3px rgba(139, 30, 45, 0.08);
 }
 
 
 /* =====================================================
-   RIGHT - PREVIEW AREA
+   SCHEDULE
+===================================================== */
+
+.schedule-title {
+  margin-top: 35px;
+  margin-bottom: 15px;
+
+  color: #8b1e2d;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedule-table th {
+  background: #8b1e2d;
+
+  color: white;
+
+  padding: 12px;
+
+  font-size: 14px;
+
+  text-align: center;
+}
+
+.schedule-table td {
+  border: 1px solid #ddd;
+
+  padding: 6px;
+
+  background: white;
+}
+
+.schedule-table td input {
+  width: 100%;
+  height: 42px;
+
+  border: none;
+  background: transparent;
+
+  box-shadow: none;
+
+  padding: 0 8px;
+
+  font-size: 14px;
+}
+
+.schedule-table td input:focus {
+  background: #fff8f8;
+}
+
+
+/* =====================================================
+   ADD ROW BUTTON
+===================================================== */
+
+.add-row-btn {
+  width: 100%;
+  height: 45px;
+
+  margin-top: 14px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #8b1e2d;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.add-row-btn:hover {
+  background: #6f1825;
+}
+
+
+/* =====================================================
+   DELETE ROW BUTTON
+===================================================== */
+
+.delete-row-btn {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #f7d7d7;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition: 0.2s;
+}
+
+.delete-row-btn:hover {
+  background: #f2bcbc;
+}
+
+
+/* =====================================================
+   SEND TO COORDINATOR BUTTON
+===================================================== */
+
+.send-coordinator-btn {
+  width: 100%;
+  height: 48px;
+
+  margin-top: 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #8b1e2d;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
+}
+
+.send-coordinator-btn:hover {
+  background: #6f1825;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(139, 30, 45, 0.20);
+}
+
+.send-coordinator-btn:active {
+  transform: translateY(0);
+}
+
+.send-coordinator-btn:disabled {
+  background: #c8c1ba;
+  color: #ffffff;
+
+  cursor: not-allowed;
+
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* =====================================================
+   DOWNLOAD WORD BUTTON
+===================================================== */
+
+.download-word-btn {
+  width: 100%;
+  height: 48px;
+
+  margin-top: 12px;
+
+  border: 1px solid #8b1e2d;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #8b1e2d;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
+}
+
+.download-word-btn:hover {
+  background: #8b1e2d;
+  color: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(139, 30, 45, 0.20);
+}
+
+.download-word-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   PREVIEW
 ===================================================== */
 
 .notice-preview-container {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
 
   height: 100vh;
 
-  display: flex;
-
-  flex-direction: column;
-
-  background: #f3eee5;
+  min-width: 0;
 
   overflow: hidden;
 }
 
-
-/* =====================================================
-   PREVIEW TITLE
-===================================================== */
-
 .notice-preview-title {
-  flex: 0 0 auto;
-
-  height: 58px;
+  height: 60px;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
-  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 700;
 
-  background: #f3eee5;
+  color: #222;
 
-  color: #111;
-
-  font-size: 20px;
-
-  font-weight: 600;
+  flex-shrink: 0;
 }
-
-
-/* =====================================================
-   PREVIEW CONTENT
-===================================================== */
 
 .notice-preview-content {
   flex: 1;
 
-  min-height: 0;
-
   overflow: auto;
 
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 35px;
+
   background: #f3eee5;
-
-  box-sizing: border-box;
-}
-
-
-/*
-   IMPORTANT:
-
-   CollegeNotice.jsx already contains:
-
-   .college-notice-preview
-
-   So here we allow it to fill the
-   available preview area.
-*/
-
-.notice-preview-content .college-notice-preview {
-  min-height: 100%;
-
-  box-sizing: border-box;
 }
 
 
 /* =====================================================
-   DESKTOP
+   A4 PAGE
 ===================================================== */
 
-@media (min-width: 1400px) {
-
-  .notice-page {
-    grid-template-columns:
-      430px minmax(0, 1fr);
-  }
-
+.notice-preview-content .college-notice-page {
+  flex-shrink: 0;
 }
 
 
 /* =====================================================
-   MEDIUM SCREEN
+   SCROLLBAR
+===================================================== */
+
+.notice-form::-webkit-scrollbar,
+.notice-preview-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.notice-form::-webkit-scrollbar-thumb,
+.notice-preview-content::-webkit-scrollbar-thumb {
+  background: #bdb5aa;
+
+  border-radius: 20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
 ===================================================== */
 
 @media (max-width: 1100px) {
-
   .notice-page {
-    grid-template-columns:
-      360px minmax(0, 1fr);
+    grid-template-columns: 360px 1fr;
   }
-
-
-  .notice-form {
-    padding:
-      28px 24px;
-  }
-
-
-  .notice-form h1 {
-    font-size: 28px;
-  }
-
 }
 
-
-/* =====================================================
-   SMALL SCREEN
-===================================================== */
-
-@media (max-width: 800px) {
-
+@media (max-width: 850px) {
   .notice-page {
-    height: auto;
-
-    min-height: 100vh;
-
     display: block;
-
-    overflow: visible;
+    height: auto;
   }
-
 
   .notice-form {
-    width: 100%;
-
     height: auto;
-
-    max-height: none;
-
-    overflow: visible;
   }
-
 
   .notice-preview-container {
-    width: 100%;
-
     height: auto;
-
-    min-height: 100vh;
-
-    overflow: visible;
   }
-
 
   .notice-preview-content {
+    justify-content: flex-start;
     overflow-x: auto;
-
-    overflow-y: visible;
   }
-
-  .notice-content {
-  width: 100%;
-  max-width: 650px;
-  margin: 0 auto;
-
-  font-size: 18px;
-  line-height: 1.8;
-}
-
-.notice-description {
-  margin: 0 0 38px 0;
-  text-align: left;
-}
-
 }

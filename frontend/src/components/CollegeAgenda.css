@@ -1,0 +1,234 @@
+/* =====================================================
+   src/components/CollegeAgenda.css
+
+   Same letterhead palette as CollegeNotice.css (read from
+   the official KLE document XML), plus the right-side
+   contact block that appears on the Agenda letterhead.
+
+   Colors used in the original document:
+     red     #FF0000  -> college name
+     blue    #0070C0  -> "AUTONOMOUS" + affiliation lines
+     maroon  #943634  -> accreditation + address
+     black   #000000  -> everything else
+
+   Fonts used in the original document:
+     Cambria           -> the letterhead block (top)
+     Times New Roman   -> everything below the letterhead
+===================================================== */
+
+.college-agenda-page {
+  width: 8.5in;
+  min-height: 11in;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  padding: 1in;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+
+  color: #000000;
+
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+/* =====================================================
+   LETTERHEAD / HEADER
+===================================================== */
+
+.college-agenda-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-align: center;
+
+  font-family: Cambria, Georgia, serif;
+}
+
+.college-agenda-logo-col {
+  flex: 0 0 1.09in;
+}
+
+.college-agenda-logo {
+  width: 1.09in;
+  height: 1.05in;
+
+  object-fit: contain;
+  display: block;
+}
+
+.college-agenda-center-col {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.agenda-kle-society {
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+.agenda-college-name {
+  font-size: 20pt;
+  font-weight: bold;
+  color: #ff0000;
+  line-height: 1.15;
+}
+
+.agenda-autonomous {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #0070c0;
+}
+
+.agenda-header-small {
+  font-size: 6pt;
+  font-weight: bold;
+  color: #0070c0;
+  line-height: 1.3;
+}
+
+.agenda-accreditation {
+  font-size: 11pt;
+  color: #943634;
+  margin-top: 2px;
+}
+
+.agenda-accreditation sup {
+  font-size: 75%;
+  top: -0.4em;
+}
+
+.agenda-address {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #943634;
+  margin-top: 2px;
+}
+
+/* Right-side contact block (Estd. / Phone / Principal / e-mail / website) */
+
+.college-agenda-contact {
+  flex: 0 0 auto;
+
+  align-self: flex-start;
+  margin-top: 4px;
+
+  text-align: left;
+
+  font-family: "Times New Roman", Times, serif;
+  font-size: 8pt;
+  color: #000000;
+}
+
+.college-agenda-contact div {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.college-agenda-contact span:first-child {
+  min-width: 48px;
+}
+
+
+/* =====================================================
+   BACHELOR OF COMPUTER APPLICATION BANNER
+===================================================== */
+
+.agenda-bca-title {
+  margin-top: 10px;
+
+  padding: 10px 0;
+
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+
+  text-align: center;
+
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+
+/* =====================================================
+   TOPIC + AGENDA HEADING
+===================================================== */
+
+.college-agenda-topic-block {
+  margin-top: 26px;
+
+  text-align: center;
+}
+
+.college-agenda-topic {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.college-agenda-heading {
+  margin-top: 18px;
+
+  font-size: 14pt;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   AGENDA TABLE
+===================================================== */
+
+.college-agenda-table {
+  width: 100%;
+
+  margin-top: 22px;
+
+  border-collapse: collapse;
+
+  font-size: 14pt;
+}
+
+.college-agenda-table th,
+.college-agenda-table td {
+  border: 1px solid #000000;
+
+  padding: 10px 14px;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.college-agenda-table thead th {
+  font-weight: bold;
+}
+
+.college-agenda-table td p {
+  margin: 0 0 6px 0;
+}
+
+.college-agenda-table td p:last-child {
+  margin-bottom: 0;
+}
+
+.college-agenda-table td:first-child {
+  width: 40%;
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+  .college-agenda-page {
+    box-shadow: none;
+    margin: 0;
+  }
+}

@@ -1,0 +1,244 @@
+/* =====================================================
+   src/components/CollegeNotice.css
+
+   Every font, size, color and spacing value below was
+   read directly out of the reference Notice.docx XML —
+   not eyeballed — so this should match point-for-point.
+
+   Colors used in the original document:
+     red     #FF0000  -> college name
+     blue    #0070C0  -> "AUTONOMOUS" + affiliation lines
+     maroon  #943634  -> accreditation + address
+     black   #000000  -> everything else
+
+   Fonts used in the original document:
+     Cambria           -> the letterhead block (top)
+     Times New Roman   -> everything below the letterhead
+===================================================== */
+
+.college-notice-page {
+  width: 8.5in;
+  min-height: 11in;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  padding: 1in;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+
+  color: #000000;
+
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+/* =====================================================
+   LETTERHEAD / HEADER
+===================================================== */
+
+.college-notice-header {
+  position: relative;
+
+  text-align: center;
+
+  font-family: Cambria, Georgia, serif;
+}
+
+.college-notice-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  width: 1.09in;
+  height: 1.05in;
+
+  object-fit: contain;
+}
+
+.college-notice-header-text {
+  position: relative;
+  z-index: 1;
+}
+
+.kle-society {
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+.college-name {
+  font-size: 20pt;
+  font-weight: bold;
+  color: #ff0000;
+  line-height: 1.15;
+}
+
+.autonomous {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #0070c0;
+}
+
+.header-small {
+  font-size: 6pt;
+  font-weight: bold;
+  color: #0070c0;
+  line-height: 1.3;
+}
+
+.accreditation {
+  font-size: 11pt;
+  color: #943634;
+  margin-top: 2px;
+}
+
+.accreditation sup {
+  font-size: 75%;
+  top: -0.4em;
+}
+
+.address {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #943634;
+  margin-top: 2px;
+}
+
+
+/* =====================================================
+   BACHELOR OF COMPUTER APPLICATION BANNER
+===================================================== */
+
+.bca-title {
+  margin-top: 8px;
+
+  padding: 4px 0;
+
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+
+  text-align: center;
+
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16pt;
+  font-weight: bold;
+  color: #000000;
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+.college-notice-date {
+  margin-top: 22px;
+
+  text-align: right;
+
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   NOTICE HEADING
+===================================================== */
+
+.college-notice-heading {
+  margin-top: 6px;
+
+  text-align: center;
+
+  font-size: 20pt;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   BODY TEXT
+===================================================== */
+
+.college-notice-body {
+  margin-top: 16px;
+
+  font-size: 16pt;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.topic-bold {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   SCHEDULE TABLE
+===================================================== */
+
+.college-notice-schedule {
+  width: 100%;
+
+  margin-top: 18px;
+
+  border-collapse: collapse;
+
+  font-size: 16pt;
+}
+
+.college-notice-schedule th,
+.college-notice-schedule td {
+  border: 1px solid #000000;
+
+  padding: 8px 10px;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.college-notice-schedule thead th {
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   NOTE
+===================================================== */
+
+.college-notice-note {
+  margin-top: 18px;
+
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   SIGNATURES
+===================================================== */
+
+.college-notice-signatures {
+  margin-top: 90px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+  .college-notice-page {
+    box-shadow: none;
+    margin: 0;
+  }
+}
