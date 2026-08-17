@@ -1,0 +1,620 @@
+/* =========================================================
+   MANAGEMENT DASHBOARD
+   ========================================================= */
+
+   .management-dashboard {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  
+    background: #f7f2e8;
+    color: #555555;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  /* =========================================================
+     NAVBAR
+     ========================================================= */
+  
+  .management-navbar {
+    height: 80px;
+  
+    background: #fffdf8;
+  
+    border-bottom: 1px solid #e7ddd0;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 24px;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* LEFT */
+  
+  .management-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .management-logo {
+    width: 48px;
+    height: 48px;
+  
+    object-fit: contain;
+  }
+  
+  .management-title h1 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 18px;
+    font-weight: 700;
+  
+    color: #2b2b2b;
+  
+    line-height: 1.1;
+  }
+  
+  .management-title p {
+    margin: 4px 0 0;
+  
+    font-size: 10px;
+  
+    color: #7a1f2b;
+  
+    font-weight: 700;
+  
+    letter-spacing: 1.5px;
+  
+    text-transform: uppercase;
+  }
+  
+  
+  /* RIGHT */
+  
+  .management-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .management-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+    padding-right: 20px;
+  
+    border-right: 1px solid #e7ddd0;
+  }
+  
+  .management-user-info {
+    text-align: right;
+  }
+  
+  .management-user-info p {
+    margin: 0;
+  
+    font-size: 13px;
+  
+    font-weight: 600;
+  
+    color: #2b2b2b;
+  }
+  
+  .management-user-info span {
+    display: block;
+  
+    margin-top: 3px;
+  
+    font-size: 9px;
+  
+    color: #7a1f2b;
+  
+    font-weight: 700;
+  
+    letter-spacing: 1px;
+  }
+  
+  .management-user-icon {
+    width: 34px;
+    height: 34px;
+  
+    border-radius: 50%;
+  
+    background: #e7ddd0;
+  
+    border: 2px solid #7a1f2b;
+  
+    color: #7a1f2b;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  /* LOGOUT */
+  
+  .management-logout {
+    height: 42px;
+  
+    padding: 0 20px;
+  
+    border: none;
+  
+    border-radius: 8px;
+  
+    background: #7a1f2b;
+  
+    color: white;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 8px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  
+    font-weight: 600;
+  
+    cursor: pointer;
+  }
+  
+  
+  /* =========================================================
+     BODY
+     ========================================================= */
+  
+  .management-body {
+    height: calc(100vh - 80px);
+  
+    display: flex;
+  
+    overflow: hidden;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+  
+  .management-sidebar {
+    width: 256px;
+    min-width: 256px;
+  
+    height: 100%;
+  
+    background: #fffdf8;
+  
+    border-right: 1px solid #e7ddd0;
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    box-sizing: border-box;
+  }
+  
+  .management-sidebar-menu {
+    padding: 24px 16px;
+  }
+  
+  .management-menu-title {
+    margin: 0 0 12px;
+  
+    padding-left: 2px;
+  
+    font-size: 9px;
+  
+    font-weight: 700;
+  
+    color: #999999;
+  
+    letter-spacing: 1.5px;
+  
+    text-transform: uppercase;
+  }
+  
+  
+  /* SIDEBAR ITEM */
+  
+  .management-sidebar-item {
+    width: 100%;
+  
+    height: 38px;
+  
+    margin-bottom: 3px;
+  
+    padding: 0 8px;
+  
+    border: none;
+  
+    border-radius: 7px;
+  
+    background: transparent;
+  
+    color: #555555;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 12px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  
+    text-align: left;
+  
+    cursor: pointer;
+  
+    transition: 0.2s;
+  }
+  
+  .management-sidebar-item:hover {
+    background: rgba(122, 31, 43, 0.05);
+  
+    color: #7a1f2b;
+  }
+  
+  
+  /* STATUS */
+  
+  .management-status-container {
+    margin-top: auto;
+  
+    padding: 16px 12px;
+  
+    border-top: 1px solid #e7ddd0;
+  }
+  
+  .management-status {
+    background: #f7f2e8;
+  
+    padding: 13px;
+  
+    border-radius: 9px;
+  }
+  
+  .management-status p {
+    margin: 0 0 6px;
+  
+    font-size: 8px;
+  
+    color: #7a1f2b;
+  
+    font-weight: 700;
+  
+    letter-spacing: 1px;
+  }
+  
+  .management-status-row {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 7px;
+  
+    font-size: 10px;
+  
+    color: #555555;
+  }
+  
+  .status-dot {
+    width: 6px;
+    height: 6px;
+  
+    border-radius: 50%;
+  
+    background: #4caf50;
+  }
+  
+  
+  /* =========================================================
+     MAIN CONTENT
+     ========================================================= */
+  
+  .management-main {
+    flex: 1;
+  
+    min-width: 0;
+  
+    height: 100%;
+  
+    padding: 18px 20px;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  }
+  
+  .management-content {
+    width: 100%;
+  
+    max-width: 760px;
+  
+    height: 100%;
+  
+    margin: 0 auto;
+  
+    display: flex;
+  
+    flex-direction: column;
+  }
+  
+  
+  /* =========================================================
+     COLLEGE HEADER
+     ========================================================= */
+  
+  .management-college-header {
+    text-align: center;
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+    flex-shrink: 0;
+  
+    margin-bottom: 17px;
+  }
+  
+  .management-center-logo {
+    width: 48px;
+    height: 48px;
+  
+    object-fit: contain;
+  
+    margin-bottom: 8px;
+  }
+  
+  .management-college-header h2 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 20px;
+  
+    line-height: 1.15;
+  
+    font-weight: 700;
+  
+    color: #2b2b2b;
+  
+    text-transform: uppercase;
+  }
+  
+  .management-header-line {
+    width: 72px;
+  
+    height: 3px;
+  
+    background: #7a1f2b;
+  
+    margin-top: 9px;
+  }
+  
+  .management-college-header p {
+    margin: 7px 0 0;
+  
+    font-size: 11px;
+  
+    font-weight: 500;
+  
+    color: #555555;
+  }
+  
+  
+  /* =========================================================
+     CARDS
+     ========================================================= */
+  
+  .management-card-grid {
+    flex: 1;
+  
+    min-height: 0;
+  
+    display: grid;
+  
+    grid-template-columns: 1fr 1fr;
+  
+    grid-template-rows: 1fr 1fr;
+  
+    gap: 14px;
+  }
+  
+  
+  /* CARD */
+  
+  .management-card {
+    width: 100%;
+    height: 100%;
+  
+    padding: 16px;
+  
+    box-sizing: border-box;
+  
+    border: 1px solid #e7ddd0;
+  
+    border-radius: 20px;
+  
+    background: #fffdf8;
+  
+    box-shadow: 0 7px 20px -5px rgba(122, 31, 43, 0.08);
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: flex-start;
+  
+    text-align: left;
+  
+    cursor: pointer;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    transition: 0.2s;
+  }
+  
+  .management-card:hover {
+    transform: translateY(-3px);
+  
+    border-color: rgba(122, 31, 43, 0.3);
+  }
+  
+  
+  /* CARD ICON */
+  
+  .management-card-icon {
+    width: 32px;
+    height: 32px;
+  
+    border-radius: 10px;
+  
+    background: rgba(122, 31, 43, 0.05);
+  
+    color: #7a1f2b;
+  
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    margin-bottom: 12px;
+  }
+  
+  
+  /* CARD TITLE */
+  
+  .management-card h3 {
+    margin: 0 0 7px;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 17px;
+  
+    font-weight: 700;
+  
+    color: #2b2b2b;
+  }
+  
+  
+  /* CARD DESCRIPTION */
+  
+  .management-card p {
+    margin: 0;
+  
+    font-size: 10px;
+  
+    line-height: 1.45;
+  
+    color: #555555;
+  }
+  
+  
+  /* CARD BUTTON */
+  
+  .management-card-button {
+    margin-top: auto;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 7px;
+  
+    padding: 7px 16px;
+  
+    border: 1px solid rgba(122, 31, 43, 0.3);
+  
+    border-radius: 9px;
+  
+    color: #7a1f2b;
+  
+    font-size: 10px;
+  
+    font-weight: 700;
+  
+    transition: 0.2s;
+  }
+  
+  .management-card:hover .management-card-button {
+    background: #7a1f2b;
+  
+    color: white;
+  }
+  
+  
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  
+  @media (max-width: 900px) {
+  
+    .management-sidebar {
+      width: 210px;
+      min-width: 210px;
+    }
+  
+    .management-content {
+      max-width: 700px;
+    }
+  
+  }
+  
+  
+  @media (max-width: 700px) {
+  
+    .management-user-info {
+      display: none;
+    }
+  
+    .management-user {
+      border-right: none;
+      padding-right: 0;
+    }
+  
+    .management-sidebar {
+      width: 65px;
+      min-width: 65px;
+    }
+  
+    .management-sidebar-item {
+      justify-content: center;
+      padding: 0;
+    }
+  
+    .management-sidebar-item span {
+      display: none;
+    }
+  
+    .management-menu-title {
+      display: none;
+    }
+  
+    .management-main {
+      padding: 15px;
+    }
+  
+    .management-card-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+    }
+  
+  }

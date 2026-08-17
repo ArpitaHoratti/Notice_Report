@@ -1,0 +1,1170 @@
+/* =========================================================
+   PRINCIPAL DASHBOARD
+   MATCHED TO REFERENCE SCREEN
+   ========================================================= */
+
+   .principal-dashboard {
+    min-height: 100vh;
+    width: 100%;
+    background: #f7f2e9;
+    color: #111827;
+    font-family: Georgia, "Times New Roman", serif;
+    box-sizing: border-box;
+  }
+  
+  .principal-dashboard *,
+  .principal-dashboard *::before,
+  .principal-dashboard *::after {
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     TOP HEADER
+     ========================================================= */
+  
+  .principal-header {
+    height: 99px;
+    min-height: 99px;
+    width: 100%;
+  
+    background: #fffdfa;
+    border-bottom: 1px solid #e3dbcf;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 52px 0 56px;
+  }
+  
+  
+  /* =========================================================
+     BRAND
+     ========================================================= */
+  
+  .principal-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  
+    height: 100%;
+  }
+  
+  .principal-logo {
+    width: 60px;
+    height: 60px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    flex-shrink: 0;
+  }
+  
+  .principal-logo img {
+    width: 60px;
+    height: 60px;
+  
+    object-fit: contain;
+    display: block;
+  }
+  
+  .principal-brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .principal-brand-text h1 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 31px;
+    line-height: 1.08;
+    font-weight: 700;
+  
+    color: #18202b;
+  }
+  
+  .principal-brand-text p {
+    margin: 7px 0 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1;
+  
+    font-weight: 700;
+    letter-spacing: 2.8px;
+  
+    color: #8b1e2d;
+  }
+  
+  
+  /* =========================================================
+     USER AREA
+     ========================================================= */
+  
+  .principal-user-area {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+  }
+  
+  .principal-user-info {
+    text-align: right;
+  }
+  
+  .principal-user-name {
+    margin: 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.1;
+  
+    font-weight: 700;
+    color: #151515;
+  }
+  
+  .principal-user-role {
+    margin: 6px 0 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+  
+    font-weight: 700;
+    letter-spacing: 2px;
+  
+    color: #8b1e2d;
+  }
+  
+  
+  /* =========================================================
+     LOGOUT BUTTON
+     ========================================================= */
+  
+  .principal-logout-btn {
+    width: 150px;
+    height: 62px;
+  
+    border: none;
+    border-radius: 12px;
+  
+    background: #8b1e2d;
+    color: #ffffff;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 11px;
+  
+    cursor: pointer;
+  }
+  
+  .principal-logout-btn:hover {
+    background: #771925;
+  }
+  
+  
+  /* =========================================================
+     MAIN LAYOUT
+     ========================================================= */
+  
+  .principal-layout {
+    width: 100%;
+    min-height: calc(100vh - 99px);
+  
+    display: flex;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+  
+  .principal-sidebar {
+    width: 302px;
+    min-width: 302px;
+  
+    min-height: calc(100vh - 99px);
+  
+    background: #fffdfa;
+  
+    border-right: 1px solid #e2dacf;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR NAV
+     ========================================================= */
+  
+  .principal-sidebar-nav {
+    padding-top: 23px;
+    width: 100%;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR LINKS
+     ========================================================= */
+  
+  .principal-sidebar-link {
+    width: 100%;
+    height: 61px;
+  
+    border: none;
+    background: transparent;
+  
+    display: flex;
+    align-items: center;
+  
+    gap: 18px;
+  
+    padding: 0 28px;
+  
+    color: #174572;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+  
+    text-align: left;
+  
+    cursor: pointer;
+  }
+  
+  .principal-sidebar-link svg {
+    width: 21px;
+    height: 21px;
+  
+    min-width: 21px;
+  
+    stroke-width: 2;
+  }
+  
+  .principal-sidebar-link:hover {
+    background: #f5eee4;
+  }
+  
+  
+  /* =========================================================
+     ACTIVE SIDEBAR
+     ========================================================= */
+  
+  .principal-sidebar-link.active {
+    background: #e8dfd2;
+  
+    color: #8b1e2d;
+  
+    border-right: 5px solid #8b1e2d;
+  
+    font-weight: 700;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR DIVIDER
+     ========================================================= */
+  
+  .principal-sidebar-divider {
+    height: 1px;
+  
+    background: #e1d8ca;
+  
+    margin: 18px 27px;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR FOOTER
+     ========================================================= */
+  
+  .principal-sidebar-footer {
+    margin-top: auto;
+  
+    padding: 0 28px 18px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 11px;
+  
+    color: #777;
+  
+    letter-spacing: 0.5px;
+  }
+  
+  
+  /* =========================================================
+     MAIN CONTENT
+     ========================================================= */
+  
+  .principal-main {
+    flex: 1;
+  
+    min-width: 0;
+    min-height: calc(100vh - 99px);
+  
+    background: #f7f2e9;
+  
+    padding: 41px 56px 55px 102px;
+  
+    overflow-x: hidden;
+  }
+  
+  
+  /* =========================================================
+     CONTENT WIDTH
+     ========================================================= */
+  
+  .principal-content {
+    width: 100%;
+    max-width: 1255px;
+  
+    margin: 0 auto;
+  }
+  
+  
+  /* =========================================================
+     WELCOME SECTION
+     ========================================================= */
+  
+  .principal-welcome {
+    margin-bottom: 34px;
+  }
+  
+  .principal-welcome h2 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 45px;
+    line-height: 1.08;
+  
+    font-weight: 700;
+  
+    color: #151515;
+  }
+  
+  .principal-welcome p {
+    margin: 12px 0 0;
+  
+    display: flex;
+    align-items: center;
+  
+    gap: 8px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 16px;
+    line-height: 1.2;
+  
+    color: #60708a;
+  }
+  
+  .principal-welcome p svg {
+    width: 15px;
+    height: 15px;
+  
+    color: #8b1e2d;
+  }
+  
+  .principal-welcome strong {
+    color: #8b1e2d;
+  }
+  
+  
+  /* =========================================================
+     STAT CARDS
+     ========================================================= */
+  
+  .principal-stats {
+    width: 100%;
+  
+    display: grid;
+  
+    grid-template-columns: repeat(3, 1fr);
+  
+    gap: 24px;
+  
+    margin-bottom: 35px;
+  }
+  
+  
+  /* =========================================================
+     STAT CARD
+     ========================================================= */
+  
+  .principal-stat-card {
+    height: 125px;
+  
+    background: #fffdfa;
+  
+    border: 1px solid #e3d9ca;
+  
+    border-radius: 18px;
+  
+    padding: 25px 29px;
+  
+    display: flex;
+    align-items: center;
+  
+    gap: 23px;
+  
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+  
+  
+  /* =========================================================
+     STAT ICON
+     ========================================================= */
+  
+  .principal-stat-icon {
+    width: 60px;
+    height: 60px;
+  
+    min-width: 60px;
+  
+    border-radius: 16px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .principal-stat-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .principal-stat-icon.pending {
+    background: #fff1cf;
+    color: #ef9c00;
+  }
+  
+  .principal-stat-icon.approved {
+    background: #dcf5ed;
+    color: #00a77b;
+  }
+  
+  .principal-stat-icon.correction {
+    background: #fde4e7;
+    color: #e64959;
+  }
+  
+  
+  /* =========================================================
+     STAT TEXT
+     ========================================================= */
+  
+  .principal-stat-card > div:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .principal-stat-card p {
+    margin: 0 0 5px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 11px;
+  
+    line-height: 1;
+  
+    letter-spacing: 2px;
+  
+    color: #777;
+  
+    font-weight: 600;
+  }
+  
+  .principal-stat-card h3 {
+    margin: 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 39px;
+  
+    line-height: 1;
+  
+    font-weight: 700;
+  
+    color: #111;
+  }
+  
+  
+  /* =========================================================
+     DOCUMENT BOX
+     ========================================================= */
+  
+  .principal-document-box {
+    width: 100%;
+  
+    background: #fffdfa;
+  
+    border: 1px solid #e3d9ca;
+  
+    border-radius: 19px;
+  
+    overflow: hidden;
+  
+    min-height: 344px;
+  }
+  
+  
+  /* =========================================================
+     DOCUMENT HEADER
+     ========================================================= */
+  
+  .principal-document-header {
+    min-height: 102px;
+  
+    padding: 27px 29px 23px;
+  
+    border-bottom: 1px solid #e6ded2;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .principal-document-header h3 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 28px;
+  
+    line-height: 1.1;
+  
+    font-weight: 700;
+  
+    color: #151515;
+  }
+  
+  .principal-document-header p {
+    margin: 6px 0 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 14px;
+  
+    color: #718096;
+  }
+  
+  
+  /* =========================================================
+     TABLE
+     ========================================================= */
+  
+  .principal-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .principal-table {
+    width: 100%;
+  
+    border-collapse: collapse;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .principal-table th {
+    padding: 14px 18px;
+  
+    background: #faf7f1;
+  
+    color: #596579;
+  
+    font-size: 12px;
+  
+    font-weight: 700;
+  
+    text-align: left;
+  
+    border-bottom: 1px solid #e6ded2;
+  }
+  
+  .principal-table td {
+    padding: 16px 18px;
+  
+    border-bottom: 1px solid #eee7dc;
+  
+    font-size: 13px;
+  
+    color: #374151;
+  
+    vertical-align: middle;
+  }
+  
+  
+  /* =========================================================
+     DOCUMENT TITLE
+     ========================================================= */
+  
+  .principal-document-title {
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 13px;
+  
+    min-width: 250px;
+  }
+  
+  .principal-document-icon {
+    width: 39px;
+    height: 39px;
+  
+    min-width: 39px;
+  
+    border-radius: 10px;
+  
+    background: #f9ecee;
+  
+    color: #8b1e2d;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .principal-document-title > div:last-child {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 4px;
+  }
+  
+  .principal-document-title strong {
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 14px;
+  
+    font-weight: 700;
+  
+    color: #172033;
+  }
+  
+  .principal-document-title span {
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 12px;
+  
+    color: #718096;
+  }
+  
+  
+  /* =========================================================
+     APPROVED BADGE
+     ========================================================= */
+  
+  .principal-approved-badge {
+    display: inline-flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    padding: 6px 10px;
+  
+    border-radius: 7px;
+  
+    background: #dff5ec;
+  
+    color: #00a77b;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 10px;
+  
+    font-weight: 700;
+  }
+  
+  
+  /* =========================================================
+     STATUS
+     ========================================================= */
+  
+  .principal-status {
+    display: inline-flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    min-width: 70px;
+  
+    padding: 6px 10px;
+  
+    border-radius: 7px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 10px;
+  
+    font-weight: 700;
+  }
+  
+  .principal-status.pending-status {
+    background: #fff0c7;
+    color: #d99000;
+  }
+  
+  .principal-status.approved-status {
+    background: #dff5ec;
+    color: #00a77b;
+  }
+  
+  .principal-status.rejected-status {
+    background: #fde1e5;
+    color: #e2384d;
+  }
+  
+  
+  /* =========================================================
+     REVIEW BUTTON
+     ========================================================= */
+  
+  .principal-view-btn {
+    border: 1px solid #ddd2c4;
+  
+    background: #f7f1e8;
+  
+    color: #8b1e2d;
+  
+    border-radius: 7px;
+  
+    padding: 7px 12px;
+  
+    display: inline-flex;
+    align-items: center;
+  
+    gap: 6px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 11px;
+  
+    font-weight: 700;
+  
+    cursor: pointer;
+  }
+  
+  .principal-view-btn:hover {
+    background: #eee5d8;
+  }
+  
+  
+  /* =========================================================
+     EMPTY STATE
+     ========================================================= */
+  
+  .principal-empty {
+    min-height: 255px;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content: center;
+  
+    flex-direction: column;
+  
+    text-align: center;
+  
+    color: #6d7888;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .principal-empty svg {
+    margin-bottom: 13px;
+  
+    color: #8b1e2d;
+  
+    width: 36px;
+    height: 36px;
+  }
+  
+  .principal-empty h4 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 25px;
+  
+    line-height: 1.2;
+  
+    color: #18202b;
+  }
+  
+  .principal-empty p {
+    margin: 7px 0 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  
+    color: #718096;
+  }
+  
+  
+  /* =========================================================
+     MODAL
+     ========================================================= */
+  
+  .principal-modal-backdrop {
+    position: fixed;
+  
+    inset: 0;
+  
+    z-index: 1000;
+  
+    background: rgba(0, 0, 0, 0.45);
+  
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    padding: 25px;
+  }
+  
+  .principal-modal {
+    width: min(700px, 100%);
+  
+    max-height: 90vh;
+  
+    overflow-y: auto;
+  
+    background: #fffdfa;
+  
+    border-radius: 16px;
+  
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  }
+  
+  .principal-modal-header {
+    padding: 22px 25px;
+  
+    border-bottom: 1px solid #e5ddd0;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content: space-between;
+  }
+  
+  .principal-modal-header h3 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 24px;
+  }
+  
+  .principal-modal-header p {
+    margin: 5px 0 0;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  
+    color: #718096;
+  }
+  
+  .principal-modal-header button {
+    width: 35px;
+    height: 35px;
+  
+    border: none;
+  
+    background: transparent;
+  
+    font-size: 27px;
+  
+    cursor: pointer;
+  }
+  
+  .principal-modal-body {
+    padding: 25px;
+  }
+  
+  .principal-modal-body h4 {
+    margin: 0 0 20px;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 22px;
+  }
+  
+  .principal-detail {
+    display: flex;
+  
+    justify-content: space-between;
+  
+    gap: 20px;
+  
+    padding: 10px 0;
+  
+    border-bottom: 1px solid #eee7dc;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  }
+  
+  .principal-detail strong {
+    color: #374151;
+  }
+  
+  .principal-detail span {
+    color: #718096;
+  
+    text-align: right;
+  }
+  
+  .principal-workflow-status {
+    margin-top: 25px;
+  
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    gap: 15px;
+  
+    padding: 18px;
+  
+    background: #f8f3eb;
+  
+    border-radius: 12px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .principal-workflow-status > div:not(.workflow-arrow) {
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+    gap: 4px;
+  }
+  
+  .principal-workflow-status span {
+    font-size: 11px;
+  
+    color: #718096;
+  }
+  
+  .principal-workflow-status b {
+    font-size: 12px;
+  }
+  
+  .approved-text {
+    color: #00a77b;
+  }
+  
+  .workflow-arrow {
+    color: #8b1e2d;
+  
+    font-size: 20px;
+  }
+  
+  .principal-modal-footer {
+    padding: 18px 25px;
+  
+    border-top: 1px solid #e5ddd0;
+  
+    display: flex;
+  
+    justify-content: flex-end;
+  
+    gap: 12px;
+  }
+  
+  .principal-reject-btn,
+  .principal-approve-btn {
+    height: 42px;
+  
+    border: none;
+  
+    border-radius: 8px;
+  
+    padding: 0 17px;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content: center;
+  
+    gap: 7px;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 13px;
+  
+    font-weight: 700;
+  
+    cursor: pointer;
+  }
+  
+  .principal-reject-btn {
+    background: #fde4e7;
+  
+    color: #c83245;
+  }
+  
+  .principal-approve-btn {
+    background: #8b1e2d;
+  
+    color: white;
+  }
+  
+  
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  
+  @media (max-width: 1200px) {
+  
+    .principal-main {
+      padding-left: 55px;
+      padding-right: 35px;
+    }
+  
+    .principal-sidebar {
+      width: 270px;
+      min-width: 270px;
+    }
+  
+    .principal-brand-text h1 {
+      font-size: 27px;
+    }
+  
+    .principal-welcome h2 {
+      font-size: 41px;
+    }
+  }
+  
+  
+  @media (max-width: 900px) {
+  
+    .principal-header {
+      padding: 0 25px;
+    }
+  
+    .principal-sidebar {
+      width: 240px;
+      min-width: 240px;
+    }
+  
+    .principal-main {
+      padding: 35px 25px;
+    }
+  
+    .principal-stats {
+      grid-template-columns: 1fr;
+    }
+  
+    .principal-user-area {
+      gap: 15px;
+    }
+  
+    .principal-logout-btn {
+      width: 125px;
+    }
+  }
+  
+  
+  @media (max-width: 700px) {
+  
+    .principal-header {
+      height: 85px;
+      min-height: 85px;
+  
+      padding: 0 15px;
+    }
+  
+    .principal-logo,
+    .principal-logo img {
+      width: 45px;
+      height: 45px;
+    }
+  
+    .principal-brand {
+      gap: 10px;
+    }
+  
+    .principal-brand-text h1 {
+      font-size: 21px;
+    }
+  
+    .principal-brand-text p {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
+  
+    .principal-user-info {
+      display: none;
+    }
+  
+    .principal-logout-btn {
+      width: 105px;
+      height: 48px;
+  
+      font-size: 13px;
+    }
+  
+    .principal-sidebar {
+      width: 70px;
+      min-width: 70px;
+    }
+  
+    .principal-sidebar-link {
+      justify-content: center;
+  
+      padding: 0;
+    }
+  
+    .principal-sidebar-link span {
+      display: none;
+    }
+  
+    .principal-sidebar-divider {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  
+    .principal-sidebar-footer {
+      display: none;
+    }
+  
+    .principal-main {
+      padding: 25px 15px;
+    }
+  
+    .principal-welcome h2 {
+      font-size: 32px;
+    }
+  
+    .principal-document-header {
+      padding: 22px;
+    }
+  
+    .principal-document-header h3 {
+      font-size: 23px;
+    }
+  }

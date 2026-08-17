@@ -1,0 +1,819 @@
+/* =========================================================
+   MANAGEMENT DASHBOARD
+   Reference-matched layout
+   ========================================================= */
+
+   .management-page {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+  
+    background: #f7f2e8;
+    color: #292929;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    display: flex;
+    flex-direction: column;
+  
+    overflow: hidden;
+  }
+  
+  
+  /* =========================================================
+     TOP HEADER
+     ========================================================= */
+  
+  .management-header {
+    height: 74px;
+    min-height: 74px;
+  
+    background: #fffdf8;
+  
+    border-bottom: 1px solid #e4dbcf;
+  
+    padding: 0 28px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    box-sizing: border-box;
+  }
+  
+  
+  /* =========================================================
+     BRAND
+     ========================================================= */
+  
+  .management-brand {
+    display: flex;
+    align-items: center;
+  
+    gap: 13px;
+  }
+  
+  .management-logo {
+    width: 42px;
+    height: 42px;
+  
+    object-fit: contain;
+  
+    display: block;
+  }
+  
+  .management-brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .management-brand-text h1 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 17px;
+    font-weight: 700;
+  
+    line-height: 1.15;
+  
+    color: #292929;
+  
+    text-transform: uppercase;
+  }
+  
+  .management-brand-text p {
+    margin: 4px 0 0;
+  
+    font-size: 9px;
+    font-weight: 700;
+  
+    color: #7a1f2b;
+  
+    letter-spacing: 1.5px;
+  }
+  
+  
+  /* =========================================================
+     USER AREA
+     ========================================================= */
+  
+  .management-user {
+    display: flex;
+    align-items: center;
+  
+    gap: 16px;
+  }
+  
+  .management-user-info {
+    display: flex;
+    flex-direction: column;
+  
+    text-align: right;
+  }
+  
+  .management-user-info strong {
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 13px;
+    font-weight: 700;
+  
+    color: #292929;
+  }
+  
+  .management-user-info span {
+    margin-top: 3px;
+  
+    font-size: 9px;
+    font-weight: 700;
+  
+    color: #7a1f2b;
+  
+    letter-spacing: 1px;
+  }
+  
+  .management-profile {
+    width: 34px;
+    height: 34px;
+  
+    border: 1px solid #7a1f2b;
+    border-radius: 50%;
+  
+    background: #f7eee8;
+  
+    color: #7a1f2b;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 17px;
+  }
+  
+  .management-divider {
+    width: 1px;
+    height: 35px;
+  
+    background: #ded4c8;
+  }
+  
+  .management-logout {
+    height: 38px;
+  
+    padding: 0 17px;
+  
+    border: none;
+    border-radius: 8px;
+  
+    background: #7a1f2b;
+    color: white;
+  
+    font-size: 12px;
+    font-weight: 700;
+  
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  
+    cursor: pointer;
+  
+    transition: background 0.2s ease;
+  }
+  
+  .management-logout:hover {
+    background: #611721;
+  }
+  
+  
+  /* =========================================================
+     BODY
+     ========================================================= */
+  
+  .management-body {
+    flex: 1;
+  
+    min-height: 0;
+  
+    display: flex;
+  }
+  
+  
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+  
+  .management-sidebar {
+    width: 212px;
+    min-width: 212px;
+  
+    background: #fffdf8;
+  
+    border-right: 1px solid #e4dbcf;
+  
+    display: flex;
+    flex-direction: column;
+  
+    box-sizing: border-box;
+  }
+  
+  .sidebar-menu {
+    padding: 20px 13px;
+  }
+  
+  .sidebar-title {
+    margin: 0 0 12px;
+  
+    padding-left: 10px;
+  
+    font-size: 8px;
+    font-weight: 700;
+  
+    color: #99918a;
+  
+    letter-spacing: 1.5px;
+  }
+  
+  .sidebar-item {
+    width: 100%;
+    height: 40px;
+  
+    margin-bottom: 3px;
+  
+    padding: 0 11px;
+  
+    border: none;
+    border-radius: 7px;
+  
+    background: transparent;
+  
+    color: #555;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    font-size: 12px;
+    font-weight: 500;
+  
+    display: flex;
+    align-items: center;
+  
+    gap: 11px;
+  
+    cursor: pointer;
+  
+    text-align: left;
+  
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-icon {
+    width: 17px;
+  
+    display: inline-flex;
+    justify-content: center;
+  
+    font-size: 15px;
+  }
+  
+  .sidebar-item:hover {
+    background: rgba(122, 31, 43, 0.06);
+  
+    color: #7a1f2b;
+  }
+  
+  .sidebar-item.active {
+    background: #f5ece8;
+  
+    color: #7a1f2b;
+  
+    font-weight: 700;
+  }
+  
+  
+  /* =========================================================
+     SYSTEM STATUS
+     ========================================================= */
+  
+  .system-status {
+    margin-top: auto;
+  
+    padding: 14px;
+  }
+  
+  .status-box {
+    background: #f7f2e8;
+  
+    border-radius: 10px;
+  
+    padding: 12px 13px;
+  }
+  
+  .status-box p {
+    margin: 0 0 6px;
+  
+    font-size: 8px;
+    font-weight: 700;
+  
+    color: #7a1f2b;
+  
+    letter-spacing: 1.1px;
+  }
+  
+  .status-row {
+    display: flex;
+    align-items: center;
+  
+    gap: 7px;
+  }
+  
+  .status-dot {
+    width: 6px;
+    height: 6px;
+  
+    border-radius: 50%;
+  
+    background: #4fbd72;
+  
+    flex-shrink: 0;
+  }
+  
+  .status-row span:last-child {
+    font-size: 9px;
+  
+    color: #555;
+  }
+  
+  
+  /* =========================================================
+     MAIN CONTENT
+     ========================================================= */
+  
+  .management-content {
+    flex: 1;
+  
+    min-width: 0;
+    min-height: 0;
+  
+    padding: 24px 22px 20px;
+  
+    box-sizing: border-box;
+  
+    overflow: hidden;
+  }
+  
+  .management-main {
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* =========================================================
+     COLLEGE HEADER
+     ========================================================= */
+  
+  .college-header {
+    flex-shrink: 0;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    text-align: center;
+  
+    margin-bottom: 16px;
+  }
+  
+  .college-center-logo {
+    width: 50px;
+    height: 50px;
+  
+    object-fit: contain;
+  
+    display: block;
+  
+    margin-bottom: 7px;
+  }
+  
+  .college-header h2 {
+    margin: 0;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 25px;
+    font-weight: 700;
+  
+    line-height: 1.15;
+  
+    color: #292929;
+  
+    text-transform: uppercase;
+  }
+  
+  .title-line {
+    width: 74px;
+    height: 3px;
+  
+    margin-top: 8px;
+  
+    background: #7a1f2b;
+  }
+  
+  .management-subtitle {
+    margin: 7px 0 0;
+  
+    font-size: 11px;
+    font-weight: 500;
+  
+    color: #555;
+  }
+  
+  
+  /* =========================================================
+     FOUR CARD GRID
+     ========================================================= */
+  
+  .management-grid {
+    flex: 1;
+  
+    min-height: 0;
+  
+    display: grid;
+  
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  
+    gap: 12px;
+  }
+  
+  
+  /* =========================================================
+     MANAGEMENT CARD
+     ========================================================= */
+  
+  .management-card {
+    min-width: 0;
+    min-height: 0;
+  
+    padding: 18px;
+  
+    border: 1px solid #e5dbcf;
+    border-radius: 18px;
+  
+    background: #fffdf8;
+  
+    box-shadow:
+      0 7px 22px rgba(70, 50, 30, 0.05);
+  
+    color: #292929;
+  
+    text-align: left;
+  
+    display: flex;
+    flex-direction: column;
+  
+    cursor: pointer;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  
+  .management-card:hover {
+    transform: translateY(-2px);
+  
+    border-color: rgba(122, 31, 43, 0.25);
+  
+    box-shadow:
+      0 10px 25px rgba(70, 50, 30, 0.09);
+  }
+  
+  
+  /* =========================================================
+     CARD ICON
+     ========================================================= */
+  
+  .card-icon {
+    width: 34px;
+    height: 34px;
+  
+    margin-bottom: 10px;
+  
+    border-radius: 9px;
+  
+    background: #f8efea;
+  
+    color: #7a1f2b;
+  
+    font-size: 18px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  /* =========================================================
+     CARD CONTENT
+     ========================================================= */
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  
+    height: 100%;
+  
+    min-height: 0;
+  }
+  
+  .card-content h3 {
+    margin: 0 0 7px;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 20px;
+    font-weight: 700;
+  
+    line-height: 1.15;
+  
+    color: #292929;
+  }
+  
+  .card-content p {
+    margin: 0;
+  
+    max-width: 580px;
+  
+    font-size: 11px;
+    font-weight: 400;
+  
+    line-height: 1.55;
+  
+    color: #555;
+  }
+  
+  
+  /* =========================================================
+     CARD BUTTON
+     ========================================================= */
+  
+  .card-button {
+    margin-top: auto;
+  
+    align-self: flex-start;
+  
+    height: 30px;
+  
+    padding: 0 15px;
+  
+    border: 1px solid rgba(122, 31, 43, 0.30);
+  
+    border-radius: 9px;
+  
+    background: transparent;
+  
+    color: #7a1f2b;
+  
+    font-size: 10px;
+    font-weight: 700;
+  
+    display: inline-flex;
+    align-items: center;
+  
+    gap: 6px;
+  
+    box-sizing: border-box;
+  }
+  
+  .card-button span {
+    font-size: 12px;
+  }
+  
+  .management-card:hover .card-button {
+    background: #7a1f2b;
+  
+    color: white;
+  }
+  
+  
+  /* =========================================================
+     INTERNAL MANAGEMENT SECTION
+     ========================================================= */
+  
+  .management-section-page {
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .management-back {
+    align-self: flex-start;
+  
+    height: 36px;
+  
+    padding: 0 15px;
+  
+    border: 1px solid rgba(122, 31, 43, 0.25);
+    border-radius: 8px;
+  
+    background: #fffdf8;
+  
+    color: #7a1f2b;
+  
+    font-size: 11px;
+    font-weight: 700;
+  
+    cursor: pointer;
+  
+    margin-bottom: 18px;
+  }
+  
+  .management-back:hover {
+    background: #7a1f2b;
+    color: white;
+  }
+  
+  .section-box {
+    flex: 1;
+  
+    background: #fffdf8;
+  
+    border: 1px solid #e5dbcf;
+  
+    border-radius: 18px;
+  
+    padding: 35px;
+  
+    box-sizing: border-box;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+    box-shadow:
+      0 7px 22px rgba(70, 50, 30, 0.05);
+  }
+  
+  .section-icon {
+    width: 42px;
+    height: 42px;
+  
+    border-radius: 10px;
+  
+    background: #f8efea;
+  
+    color: #7a1f2b;
+  
+    font-size: 21px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    margin-bottom: 15px;
+  }
+  
+  .section-box h2 {
+    margin: 0 0 9px;
+  
+    font-family: Georgia, "Times New Roman", serif;
+  
+    font-size: 28px;
+  
+    color: #292929;
+  }
+  
+  .section-box p {
+    margin: 0;
+  
+    font-size: 13px;
+  
+    line-height: 1.6;
+  
+    color: #555;
+  }
+  
+  .section-message {
+    margin-top: 25px;
+  
+    padding: 14px 18px;
+  
+    width: 100%;
+  
+    box-sizing: border-box;
+  
+    border-radius: 9px;
+  
+    background: #f7f2e8;
+  
+    color: #7a1f2b;
+  
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  
+  @media (max-width: 1100px) {
+  
+    .management-header {
+      padding: 0 20px;
+    }
+  
+    .management-content {
+      padding: 20px 18px;
+    }
+  
+    .college-header h2 {
+      font-size: 22px;
+    }
+  
+    .card-content h3 {
+      font-size: 18px;
+    }
+  
+  }
+  
+  
+  @media (max-width: 800px) {
+  
+    .management-sidebar {
+      width: 175px;
+      min-width: 175px;
+    }
+  
+    .management-user-info {
+      display: none;
+    }
+  
+    .management-grid {
+      gap: 10px;
+    }
+  
+    .management-card {
+      padding: 15px;
+    }
+  
+  }
+  
+  
+  @media (max-width: 650px) {
+  
+    .management-header {
+      height: 65px;
+      min-height: 65px;
+    }
+  
+    .management-logo {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .management-brand-text h1 {
+      font-size: 14px;
+    }
+  
+    .management-sidebar {
+      width: 62px;
+      min-width: 62px;
+    }
+  
+    .sidebar-title,
+    .sidebar-item span:last-child,
+    .system-status {
+      display: none;
+    }
+  
+    .sidebar-item {
+      justify-content: center;
+      padding: 0;
+    }
+  
+    .management-content {
+      padding: 15px;
+    }
+  
+    .college-header h2 {
+      font-size: 18px;
+    }
+  
+    .management-subtitle {
+      font-size: 10px;
+    }
+  
+    .management-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+    }
+  
+  }

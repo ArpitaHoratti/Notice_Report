@@ -1,6 +1,6 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import {
-  LayoutGrid,
+  LayoutDashboard,
   Bell,
   FileText,
   CalendarCheck2,
@@ -9,89 +9,183 @@ import {
   XCircle,
   User,
   LogOut,
-  ShieldCheck,
   Clock,
-  CheckCircle,
-  AlertCircle,
-  ClipboardList,
+  Eye,
+  FileSpreadsheet,
+  X,
 } from "lucide-react";
 
+import { getDocuments, saveDocument } from "../utils/storage";
 import "./ApprovalDashboard.css";
 
-const documents = [
-  {
-    title: "Notice: Cloud Computing Seminar",
-    details: "BCA 3rd Sem • Activity Date: 19/05/2026",
-    teacher: "Dr. Anil Kumar",
-    submitted: "2 hours ago",
-    status: "Pending",
-    principalStatus: "Approved",
-  },
-  {
-    title: "Report: Industrial Visit - Tech Park",
-    details: "BCA 5th Sem • Submission Date: 20/05/2026",
-    teacher: "Prof. Megha Patil",
-    submitted: "5 hours ago",
-    status: "Pending",
-    principalStatus: "Rejected",
-  },
-  {
-    title: "Agenda: Faculty Development Meeting",
-    details: "All Dept • Scheduled: 25/05/2026",
-    teacher: "Admin Office",
-    submitted: "1 day ago",
-    status: "Pending",
-    principalStatus: "Pending",
-  },
-];
+export default function ApprovalDashboard({
+  user,
+  setCurrentPage,
+  setLoggedInUser,
+}) {
+  const [documents, setDocuments] = useState([]);
+  const [activeTab, setActiveTab] = useState("PENDING");
+  const [selectedDocument, setSelectedDocument] = useState(null);
 
-function StatusBadge({ children, type }) {
-  return (
-    <span className={`approval-status ${type}`}>
-      {children}
-    </span>
+  // =========================================
+  // LOAD DOCUMENTS
+  // =========================================
+
+  useEffect(() => {
+    loadDocuments();
+  }, []);
+
+  const loadDocuments = () => {
+    const storedDocuments = getDocuments();
+
+    // Coordinator sees documents waiting for approval
+    setDocuments(storedDocuments);
+  };
+
+  // =========================================
+  // LOGOUT
+  // =========================================
+
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    setCurrentPage("login");
+  };
+
+  // =========================================
+  // APPROVE DOCUMENT
+  // =========================================
+
+  const handleApprove = (document) => {
+    const updatedDocuments = saveDocument({
+      ...document,
+      status: "APPROVED",
+      submittedAt: "Approved just now",
+      coordinatorStatus: "APPROVED",
+      coordinatorName: user?.name || "Coordinator",
+    });
+
+    setDocuments(updatedDocuments);
+    setSelectedDocument(null);
+  };
+
+  // =========================================
+  // REJECT DOCUMENT
+  // =========================================
+
+  const handleReject = (document) => {
+    const updatedDocuments = saveDocument({
+      ...document,
+      status: "REJECTED",
+      submittedAt: "Rejected just now",
+      coordinatorStatus: "REJECTED",
+      coordinatorName: user?.name || "Coordinator",
+    });
+
+    setDocuments(updatedDocuments);
+    setSelectedDocument(null);
+  };
+
+  // =========================================
+  // FILTER
+  // =========================================
+
+  const pendingDocuments = documents.filter(
+    (doc) => doc.status === "PENDING"
   );
-}
 
-function ApprovalDashboard({ onLogout }) {
-  const handleNavigation = (name) => {
-    console.log(`${name} clicked`);
+  const approvedDocuments = documents.filter(
+    (doc) => doc.status === "APPROVED"
+  );
+
+  const rejectedDocuments = documents.filter(
+    (doc) => doc.status === "REJECTED"
+  );
+
+  const getDisplayedDocuments = () => {
+    switch (activeTab) {
+      case "APPROVED":
+        return approvedDocuments;
+
+      case "REJECTED":
+        return rejectedDocuments;
+
+      case "ALL":
+        return documents;
+
+      default:
+        return pendingDocuments;
+    }
+  };
+
+  const displayedDocuments = getDisplayedDocuments();
+
+  // =========================================
+  // OPEN DOCUMENT
+  // =========================================
+
+  const handleOpenDocument = (document) => {
+    setSelectedDocument(document);
+  };
+
+  // =========================================
+  // EDIT DOCUMENT
+  // =========================================
+
+  const handleEditDocument = (document) => {
+    setSelectedDocument(null);
+
+    if (document.type === "Report") {
+      setCurrentPage("report");
+    } else {
+      setCurrentPage("notice");
+    }
   };
 
   return (
     <div className="approval-dashboard">
 
-      {/* ================================
+      {/* =========================================
           TOP HEADER
-      ================================= */}
-      <header className="approval-top-header">
+      ========================================= */}
+
+      <header className="approval-header">
 
         <div className="approval-brand">
 
-          <img
-            src="/college-logo.png"
-            alt="College Logo"
-            className="approval-logo"
-          />
+          <div className="approval-logo">
+            <School size={25} />
+          </div>
 
-          <div className="approval-brand-text">
+          <div>
             <h1>Workflow Management System</h1>
-            <p>KLE BCA PC Jabin Science College</p>
+
+            <p>
+              KLE BCA PC Jabin Science College
+            </p>
           </div>
 
         </div>
 
 
-        <div className="approval-user-area">
+        <div className="approval-user">
 
           <div className="approval-user-info">
-            <p>Prof. Santosh Naik</p>
-            <span>Role: Department Coordinator</span>
+
+            <strong>
+              {user?.name || "Coordinator"}
+            </strong>
+
+            <span>
+              Role: Coordinator
+            </span>
+
           </div>
 
+
           <button
+            type="button"
             className="approval-logout"
-            onClick={onLogout}
+            onClick={handleLogout}
           >
             <LogOut size={17} />
             Logout
@@ -102,185 +196,234 @@ function ApprovalDashboard({ onLogout }) {
       </header>
 
 
-      {/* ================================
+      {/* =========================================
           MAIN LAYOUT
-      ================================= */}
+      ========================================= */}
+
       <div className="approval-layout">
 
 
-        {/* ================================
+        {/* =========================================
             SIDEBAR
-        ================================= */}
+        ========================================= */}
+
         <aside className="approval-sidebar">
 
-          <nav className="approval-navigation">
+          <nav>
 
             <button
-              className="approval-nav-item active"
-              onClick={() => handleNavigation("Dashboard")}
+              type="button"
+              className={`approval-nav-link ${
+                activeTab === "ALL" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("ALL")}
             >
-              <LayoutGrid size={19} />
-              <span>Dashboard</span>
+              <LayoutDashboard size={19} />
+              Dashboard
             </button>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Pending Notices")}
+              type="button"
+              className={`approval-nav-link ${
+                activeTab === "PENDING" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("PENDING")}
             >
               <Bell size={19} />
-              <span>Pending Notices</span>
+              Pending Notices
+
+              {pendingDocuments.filter(
+                (doc) => doc.type === "Notice"
+              ).length > 0 && (
+                <span className="nav-count">
+                  {
+                    pendingDocuments.filter(
+                      (doc) => doc.type === "Notice"
+                    ).length
+                  }
+                </span>
+              )}
             </button>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Pending Reports")}
+              type="button"
+              className="approval-nav-link"
+              onClick={() => setActiveTab("PENDING")}
             >
               <FileText size={19} />
-              <span>Pending Reports</span>
+              Pending Reports
+
+              {pendingDocuments.filter(
+                (doc) => doc.type === "Report"
+              ).length > 0 && (
+                <span className="nav-count">
+                  {
+                    pendingDocuments.filter(
+                      (doc) => doc.type === "Report"
+                    ).length
+                  }
+                </span>
+              )}
             </button>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Pending Agenda")}
+              type="button"
+              className="approval-nav-link"
+              onClick={() => alert("Pending Agenda")}
             >
               <CalendarCheck2 size={19} />
-              <span>Pending Agenda</span>
+              Pending Agenda
             </button>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Pending College Format")}
+              type="button"
+              className="approval-nav-link"
+              onClick={() => alert("Pending College Format")}
             >
               <School size={19} />
-              <span>Pending College Format</span>
+              Pending College Format
             </button>
 
 
-            <div className="approval-nav-divider" />
+            <div className="approval-divider"></div>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Approved Documents")}
+              type="button"
+              className={`approval-nav-link ${
+                activeTab === "APPROVED" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("APPROVED")}
             >
               <CheckCircle2 size={19} />
-              <span>Approved Documents</span>
+              Approved Documents
             </button>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("Rejected Documents")}
+              type="button"
+              className={`approval-nav-link ${
+                activeTab === "REJECTED" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("REJECTED")}
             >
               <XCircle size={19} />
-              <span>Rejected Documents</span>
+              Rejected Documents
             </button>
 
 
-            <div className="approval-nav-divider" />
+            <div className="approval-divider"></div>
 
 
             <button
-              className="approval-nav-item"
-              onClick={() => handleNavigation("My Profile")}
+              type="button"
+              className="approval-nav-link"
+              onClick={() =>
+                alert(
+                  `Name: ${user?.name || "Coordinator"}\nEmail: ${
+                    user?.email || ""
+                  }\nRole: Coordinator`
+                )
+              }
             >
               <User size={19} />
-              <span>My Profile</span>
+              My Profile
             </button>
 
           </nav>
 
 
           <div className="approval-sidebar-footer">
-            © 2024 KLE SOCIETY
+            © 2026 KLE SOCIETY
           </div>
 
         </aside>
 
 
-        {/* ================================
+        {/* =========================================
             MAIN CONTENT
-        ================================= */}
+        ========================================= */}
+
         <main className="approval-main">
 
           <div className="approval-content">
 
 
-            {/* ================================
+            {/* =========================================
                 WELCOME
-            ================================= */}
+            ========================================= */}
+
             <section className="approval-welcome">
 
               <h2>
-                Welcome, Prof. Santosh Naik
+                Welcome, {user?.name || "Coordinator"}
               </h2>
 
-              <div className="approval-role">
-
-                <ShieldCheck size={18} />
+              <p>
+                <CheckCircle2 size={17} />
 
                 <span>
                   Department Coordinator
-                  <span className="approval-role-highlight">
-                    • Approval Queue
-                  </span>
                 </span>
 
-              </div>
+                <span>•</span>
+
+                <strong>
+                  Approval Queue
+                </strong>
+              </p>
 
             </section>
 
 
-            {/* ================================
-                STATISTICS
-            ================================= */}
+            {/* =========================================
+                STAT CARDS
+            ========================================= */}
+
             <section className="approval-stats">
 
 
-              {/* Pending */}
               <div className="approval-stat-card">
 
-                <div className="approval-stat-icon pending">
-                  <Clock size={25} />
+                <div className="stat-icon pending">
+                  <Clock size={23} />
                 </div>
 
                 <div>
-                  <p>Pending Review</p>
-                  <strong>14</strong>
+                  <span>Pending Review</span>
+                  <strong>{pendingDocuments.length}</strong>
                 </div>
 
               </div>
 
 
-              {/* Approved */}
               <div className="approval-stat-card">
 
-                <div className="approval-stat-icon approved">
-                  <CheckCircle size={25} />
+                <div className="stat-icon approved">
+                  <CheckCircle2 size={23} />
                 </div>
 
                 <div>
-                  <p>Approved This Week</p>
-                  <strong>38</strong>
+                  <span>Approved</span>
+                  <strong>{approvedDocuments.length}</strong>
                 </div>
 
               </div>
 
 
-              {/* Correction */}
               <div className="approval-stat-card">
 
-                <div className="approval-stat-icon correction">
-                  <AlertCircle size={25} />
+                <div className="stat-icon rejected">
+                  <XCircle size={23} />
                 </div>
 
                 <div>
-                  <p>Need Correction</p>
-                  <strong>03</strong>
+                  <span>Rejected</span>
+                  <strong>{rejectedDocuments.length}</strong>
                 </div>
 
               </div>
@@ -288,24 +431,95 @@ function ApprovalDashboard({ onLogout }) {
             </section>
 
 
-            {/* ================================
-                APPROVAL TABLE
-            ================================= */}
+            {/* =========================================
+                DOCUMENT TABLE
+            ========================================= */}
+
             <section className="approval-table-card">
 
 
-              {/* Table heading */}
               <div className="approval-table-header">
 
-                <h3>
-                  <ClipboardList size={19} />
-                  Approval Pending
-                </h3>
+                <div>
+
+                  <h3>
+                    <FileText size={19} />
+
+                    Approval Pending
+                  </h3>
+
+                  <p>
+                    Review documents submitted by teachers
+                  </p>
+
+                </div>
+
+
+                <div className="approval-tabs">
+
+                  <button
+                    type="button"
+                    className={
+                      activeTab === "PENDING"
+                        ? "tab-active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab("PENDING")
+                    }
+                  >
+                    Pending
+                  </button>
+
+                  <button
+                    type="button"
+                    className={
+                      activeTab === "APPROVED"
+                        ? "tab-active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab("APPROVED")
+                    }
+                  >
+                    Approved
+                  </button>
+
+                  <button
+                    type="button"
+                    className={
+                      activeTab === "REJECTED"
+                        ? "tab-active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab("REJECTED")
+                    }
+                  >
+                    Rejected
+                  </button>
+
+                  <button
+                    type="button"
+                    className={
+                      activeTab === "ALL"
+                        ? "tab-active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab("ALL")
+                    }
+                  >
+                    All
+                  </button>
+
+                </div>
 
               </div>
 
 
-              {/* Table */}
+              {/* TABLE */}
+
               <div className="approval-table-wrapper">
 
                 <table className="approval-table">
@@ -314,16 +528,28 @@ function ApprovalDashboard({ onLogout }) {
 
                     <tr>
 
-                      <th>Document Details</th>
+                      <th>
+                        Document Details
+                      </th>
 
-                      <th>Teacher</th>
+                      <th>
+                        Teacher
+                      </th>
 
-                      <th>Submitted</th>
+                      <th>
+                        Submitted
+                      </th>
 
-                      <th>Status</th>
+                      <th>
+                        Status
+                      </th>
 
-                      <th className="principal-column">
+                      <th>
                         Principal Status
+                      </th>
+
+                      <th>
+                        Action
                       </th>
 
                     </tr>
@@ -333,72 +559,139 @@ function ApprovalDashboard({ onLogout }) {
 
                   <tbody>
 
-                    {documents.map((document, index) => (
+                    {displayedDocuments.length === 0 ? (
 
-                      <tr key={index}>
+                      <tr>
 
-                        {/* Document */}
-                        <td className="document-details">
-
-                          <p>
-                            {document.title}
-                          </p>
-
-                          <span>
-                            {document.details}
-                          </span>
-
-                        </td>
-
-
-                        {/* Teacher */}
-                        <td>
-                          {document.teacher}
-                        </td>
-
-
-                        {/* Submitted */}
-                        <td>
-                          {document.submitted}
-                        </td>
-
-
-                        {/* Status */}
-                        <td>
-
-                          <StatusBadge type="pending">
-                            {document.status}
-                          </StatusBadge>
-
-                        </td>
-
-
-                        {/* Principal Status */}
-                        <td className="principal-column">
-
-                          {document.principalStatus === "Approved" && (
-                            <StatusBadge type="principal-approved">
-                              Approved
-                            </StatusBadge>
-                          )}
-
-                          {document.principalStatus === "Rejected" && (
-                            <StatusBadge type="principal-rejected">
-                              Rejected
-                            </StatusBadge>
-                          )}
-
-                          {document.principalStatus === "Pending" && (
-                            <StatusBadge type="principal-pending">
-                              Pending
-                            </StatusBadge>
-                          )}
-
+                        <td
+                          colSpan="6"
+                          className="empty-table"
+                        >
+                          No documents found.
                         </td>
 
                       </tr>
 
-                    ))}
+                    ) : (
+
+                      displayedDocuments.map((doc) => (
+
+                        <tr key={doc.id}>
+
+                          {/* DOCUMENT */}
+
+                          <td>
+
+                            <div className="document-cell">
+
+                              <div className="document-type-icon">
+
+                                {doc.type === "Report" ? (
+                                  <FileSpreadsheet
+                                    size={19}
+                                  />
+                                ) : (
+                                  <FileText
+                                    size={19}
+                                  />
+                                )}
+
+                              </div>
+
+
+                              <div>
+
+                                <strong>
+                                  {doc.title}
+                                </strong>
+
+                                <span>
+                                  {doc.details ||
+                                    "Workflow document"}
+                                </span>
+
+                              </div>
+
+                            </div>
+
+                          </td>
+
+
+                          {/* TEACHER */}
+
+                          <td>
+                            {doc.author ||
+                              "Teacher"}
+                          </td>
+
+
+                          {/* SUBMITTED */}
+
+                          <td>
+                            {doc.submittedAt ||
+                              doc.date}
+                          </td>
+
+
+                          {/* STATUS */}
+
+                          <td>
+
+                            <span
+                              className={`approval-status ${
+                                doc.status?.toLowerCase()
+                              }`}
+                            >
+                              {doc.status}
+                            </span>
+
+                          </td>
+
+
+                          {/* PRINCIPAL STATUS */}
+
+                          <td>
+
+                            <span
+                              className={`principal-status ${
+                                doc.principalStatus
+                                  ? doc.principalStatus.toLowerCase()
+                                  : doc.status === "APPROVED"
+                                  ? "pending"
+                                  : "pending"
+                              }`}
+                            >
+                              {doc.principalStatus ||
+                                "Pending"}
+                            </span>
+
+                          </td>
+
+
+                          {/* ACTION */}
+
+                          <td>
+
+                            <button
+                              type="button"
+                              className="view-document-btn"
+                              onClick={() =>
+                                handleOpenDocument(
+                                  doc
+                                )
+                              }
+                            >
+                              <Eye size={16} />
+                              Review
+                            </button>
+
+                          </td>
+
+                        </tr>
+
+                      ))
+
+                    )}
 
                   </tbody>
 
@@ -414,8 +707,200 @@ function ApprovalDashboard({ onLogout }) {
 
       </div>
 
+
+      {/* =========================================
+          REVIEW MODAL
+      ========================================= */}
+
+      {selectedDocument && (
+
+        <div
+          className="approval-modal-backdrop"
+          onClick={() =>
+            setSelectedDocument(null)
+          }
+        >
+
+          <div
+            className="approval-modal"
+            onClick={(e) =>
+              e.stopPropagation()
+            }
+          >
+
+
+            <div className="approval-modal-header">
+
+              <div>
+
+                <h3>
+                  Review Document
+                </h3>
+
+                <p>
+                  {selectedDocument.type}
+                </p>
+
+              </div>
+
+
+              <button
+                type="button"
+                className="modal-close"
+                onClick={() =>
+                  setSelectedDocument(null)
+                }
+              >
+                <X size={20} />
+              </button>
+
+            </div>
+
+
+            <div className="approval-modal-body">
+
+              <h2>
+                {selectedDocument.title}
+              </h2>
+
+
+              <div className="document-details-grid">
+
+                <div>
+                  <span>Type</span>
+                  <strong>
+                    {selectedDocument.type}
+                  </strong>
+                </div>
+
+
+                <div>
+                  <span>Teacher</span>
+                  <strong>
+                    {selectedDocument.author ||
+                      "Teacher"}
+                  </strong>
+                </div>
+
+
+                <div>
+                  <span>Date</span>
+                  <strong>
+                    {selectedDocument.date ||
+                      "-"}
+                  </strong>
+                </div>
+
+
+                <div>
+                  <span>Status</span>
+
+                  <strong>
+                    {selectedDocument.status}
+                  </strong>
+                </div>
+
+              </div>
+
+
+              <div className="document-description">
+
+                <label>
+                  Description
+                </label>
+
+                <p>
+                  {selectedDocument.details ||
+                    "No description available."}
+                </p>
+
+              </div>
+
+
+              {/* CURRENT STATUS */}
+
+              <div className="current-approval-status">
+
+                <span>
+                  Coordinator Status
+                </span>
+
+                <strong>
+                  {selectedDocument.coordinatorStatus ||
+                    selectedDocument.status}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            {/* =====================================
+                MODAL ACTIONS
+            ===================================== */}
+
+            <div className="approval-modal-footer">
+
+              <button
+                type="button"
+                className="modal-edit-btn"
+                onClick={() =>
+                  handleEditDocument(
+                    selectedDocument
+                  )
+                }
+              >
+                <Eye size={16} />
+                Open Document
+              </button>
+
+
+              {selectedDocument.status ===
+                "PENDING" && (
+
+                <>
+
+                  <button
+                    type="button"
+                    className="modal-reject-btn"
+                    onClick={() =>
+                      handleReject(
+                        selectedDocument
+                      )
+                    }
+                  >
+                    <XCircle size={17} />
+                    Reject
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className="modal-approve-btn"
+                    onClick={() =>
+                      handleApprove(
+                        selectedDocument
+                      )
+                    }
+                  >
+                    <CheckCircle2
+                      size={17}
+                    />
+                    Approve & Send to Principal
+                  </button>
+
+                </>
+
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
     </div>
   );
 }
-
-export default ApprovalDashboard;

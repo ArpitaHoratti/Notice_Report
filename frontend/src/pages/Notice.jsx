@@ -1,34 +1,45 @@
 // src/pages/Notice.jsx
 
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Send } from "lucide-react";
 
 import "./Notice.css";
 import CollegeNotice from "../components/CollegeNotice";
+import { saveDocument } from "../utils/storage";
 
-export default function Notice({ setCurrentPage, editingDoc }) {
+export default function Notice({
+  setCurrentPage,
+  editingDoc,
+  user,
+}) {
 
-  const [values, setValues] = useState({
-    noticeDate: "",
-    className: "",
-    division: "",
-    activityName: "",
-    time: "",
-    time2: "",
-    division2: "",
-    eventDate: "",
-    classroom: "",
-    note: "",
+  // =========================================
+  // INITIAL VALUES
+  // =========================================
 
-    coordinatorTitle: "Seminar Coordinator",
-    coordinatorName: "",
+  const [values, setValues] = useState(
+    editingDoc?.noticeData || {
+      noticeDate: "",
+      className: "",
+      division: "",
+      activityName: "",
+      time: "",
+      time2: "",
+      division2: "",
+      eventDate: "",
+      classroom: "",
+      note: "",
 
-    academicTitle: "Academic Coordinator",
-    academicName: "",
+      coordinatorTitle: "Seminar Coordinator",
+      coordinatorName: "",
 
-    principalTitle: "Principal",
-    principalName: "",
-  });
+      academicTitle: "Academic Coordinator",
+      academicName: "",
+
+      principalTitle: "Principal",
+      principalName: "",
+    }
+  );
 
   // =========================================
   // HANDLE INPUT CHANGES
@@ -41,6 +52,97 @@ export default function Notice({ setCurrentPage, editingDoc }) {
       ...prev,
       [name]: value,
     }));
+  };
+
+  // =========================================
+  // SUBMIT NOTICE TO COORDINATOR
+  // =========================================
+
+  const handleSubmitNotice = () => {
+
+    // Basic validation
+    if (!values.noticeDate) {
+      alert("Please select the Notice Date.");
+      return;
+    }
+
+    if (!values.activityName.trim()) {
+      alert("Please enter the Activity / Seminar Name.");
+      return;
+    }
+
+    if (!values.eventDate) {
+      alert("Please select the Event Date.");
+      return;
+    }
+
+    // -----------------------------------------
+    // CREATE DOCUMENT
+    // -----------------------------------------
+
+    const document = {
+      id: editingDoc?.id,
+
+      title:
+        `Notice: ${values.activityName || "Untitled Notice"}`,
+
+      type: "Notice",
+
+      status: "PENDING",
+
+      // VERY IMPORTANT
+      // This sends the document to Coordinator
+      currentApprover: "COORDINATOR",
+
+      author:
+        user?.name || "Teacher",
+
+      authorEmail:
+        user?.email || "",
+
+      date:
+        values.noticeDate,
+
+      submittedAt:
+        editingDoc
+          ? "Resubmitted just now"
+          : "Submitted just now",
+
+      details:
+        `${values.className || ""} • Event Date: ${values.eventDate || ""}`,
+
+      // Keep the COMPLETE editable Notice data
+      noticeData: values,
+
+      // Workflow information
+      coordinatorStatus: "PENDING",
+
+      principalStatus: "PENDING",
+
+      rejectionReason: "",
+
+      rejectedBy: null,
+    };
+
+    // -----------------------------------------
+    // SAVE DOCUMENT
+    // -----------------------------------------
+
+    saveDocument(document);
+
+    // -----------------------------------------
+    // SUCCESS MESSAGE
+    // -----------------------------------------
+
+    alert(
+      "Notice submitted successfully to the Coordinator."
+    );
+
+    // -----------------------------------------
+    // RETURN TO TEACHER DASHBOARD
+    // -----------------------------------------
+
+    setCurrentPage("teacher");
   };
 
   return (
@@ -61,7 +163,9 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           <span>Dashboard</span>
         </button>
 
-        <h1>Create Notice</h1>
+        <h1>
+          {editingDoc ? "Edit Notice" : "Create Notice"}
+        </h1>
 
         {/* ===============================
             NOTICE DATE
@@ -75,7 +179,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           value={values.noticeDate}
           onChange={handleChange}
         />
-
 
         {/* ===============================
             CLASS
@@ -91,7 +194,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           onChange={handleChange}
         />
 
-
         {/* ===============================
             ACTIVITY
         =============================== */}
@@ -105,7 +207,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           value={values.activityName}
           onChange={handleChange}
         />
-
 
         {/* ===============================
             CLASSROOM
@@ -121,7 +222,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           onChange={handleChange}
         />
 
-
         {/* ===============================
             EVENT DATE
         =============================== */}
@@ -134,7 +234,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           value={values.eventDate}
           onChange={handleChange}
         />
-
 
         {/* ===============================
             FIRST SCHEDULE ROW
@@ -164,7 +263,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           onChange={handleChange}
         />
 
-
         {/* ===============================
             SECOND SCHEDULE ROW
         =============================== */}
@@ -193,7 +291,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           onChange={handleChange}
         />
 
-
         {/* ===============================
             NOTE
         =============================== */}
@@ -207,7 +304,6 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           value={values.note}
           onChange={handleChange}
         />
-
 
         {/* ===============================
             SIGNATURES
@@ -247,8 +343,25 @@ export default function Notice({ setCurrentPage, editingDoc }) {
           onChange={handleChange}
         />
 
-      </aside>
+        {/* =================================================
+            SUBMIT NOTICE
+        ================================================= */}
 
+        <button
+          type="button"
+          className="submit-notice-btn"
+          onClick={handleSubmitNotice}
+        >
+          <Send size={18} />
+
+          <span>
+            {editingDoc
+              ? "Resubmit to Coordinator"
+              : "Submit to Coordinator"}
+          </span>
+        </button>
+
+      </aside>
 
       {/* =================================================
           RIGHT SIDE - LIVE NOTICE PREVIEW

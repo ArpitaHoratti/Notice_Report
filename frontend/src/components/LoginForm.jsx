@@ -24,8 +24,8 @@ function LoginForm({ setCurrentPage, setLoggedInUser }) {
       role: "Teacher",
     },
     {
-      name: "Manoj Gantikarai",
-      email: "manojgantikarai@klebca.in",
+      name: "Manoj Ghantikeri",
+      email: "manojghantikeri@klebca.in",
       password: "te76w88*&($%",
       role: "Coordinator",
     },
